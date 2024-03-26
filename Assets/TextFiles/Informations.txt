@@ -1,0 +1,9 @@
+1;Aether;Aether is facility in which our pilots are undergoing training in virtual reality to make them ready to explore cosmos.;1
+2;Aliens;Other forms of life have been confirmed to exist in another space systems. None of them seems to be advanced though.;1
+3;Quame;Quame is very rare reddish mineral that is base for hyperdrive engines.;1
+4;Ter;Ter is unknown previously matter that is containg huge amount of energy.;0
+5;Space systems;Also known as solar system -  gravitationally bound system of the Sun and the objects that orbit it. Due to distance between systems travelling it without hyperdrive would be nigh impossible.;1
+6;Hangar;From this place we send our pilots to hyperlane in purpose of travelling to other systems.;1
+7;Habitable planets;We currently cannot precisely define habitability of planets in other systems. Due to that fact it is necessary to send pilots that will bring us more data;1
+8;Lab;In this place Admiral can chose focus of allocated scientists on Lotus.;1
+9;Waiver;Due to dangerous nature of job every pilot and admiral has to sign waiver of liability.;1
