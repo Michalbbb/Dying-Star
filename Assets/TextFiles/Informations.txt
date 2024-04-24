@@ -7,3 +7,8 @@
 7;Habitable planets;We currently cannot precisely define habitability of planets in other systems. Due to that fact it is necessary to send pilots that will bring us more data;1
 8;Lab;In this place Admiral can chose focus of allocated scientists on Lotus.;1
 9;Waiver;Due to dangerous nature of job every pilot and admiral has to sign waiver of liability.;1
+10;Nulls;Null is international currency used in Lotus.;1
+11;Metals;Metals are sum of currently owned ores,alloys and minerals that can be used as base for building spaceship;1
+12;Titan v2;Titan v2 is special alloy made of various rare metals in purpose of making most durable one. (Used for building special ships);1
+13;Encre;Encre is durable material able to produce energy by itself (under some circumstances);1
+14;1023;It is predicted year in which we won't be able to sustain life on Lotus anymore.;1

@@ -26,7 +26,7 @@ public class Technology{
     Image image;
     float buttonPositionX;
     float buttonPositionY;
-    bool completed=false;
+    public bool completed=false;
     public Technology(string data,Canvas canv,TMP_FontAsset font,RawImage tipImage,TextMeshProUGUI text){
         string [] splitData=data.Split(';');
         id=int.Parse(splitData[0]);
@@ -111,6 +111,7 @@ public class Technology{
         GlobalVariables.Instance.changeTechnology=true;
         GlobalVariables.Instance.currentTechnology=id;
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
+        GlobalVariables.Instance.currentTech=this;
         }
     }
   private void OnMouseEnter() {
@@ -147,5 +148,16 @@ public class Technology{
     }
     public void changeCompleteState(){
         completed=true;
+    }
+    public string getName(){
+        return name;
+    }
+    public string getResearchTime(){
+        return baseResearchTime.ToString()+" months";
+    }
+    public void skipTime(int months){
+        baseResearchTime-=months;
+        if(baseResearchTime<=0)changeCompleteState();
+
     }
 }

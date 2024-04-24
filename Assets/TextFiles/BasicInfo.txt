@@ -1,0 +1,9 @@
+Start date : Feb 541
+End date: Jan 1023
+
+Resources:
+Nulls - Basic currency
+Quame - Material necessary for hyperdrive
+Metals - Basic material for spaceships and repair for it
+Titan v2 - Much better version of metals
+Encre - Very durable material able to produce energy by itself
