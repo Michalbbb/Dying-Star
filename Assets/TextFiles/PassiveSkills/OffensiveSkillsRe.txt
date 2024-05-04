@@ -1,0 +1,2 @@
+1;War never ends(Re);Increases total attack by;attack;1;attack;percent;3;8;20;40
+2;Devasting tactics(Re);Increases critical strike multiplier by;critMultiplier;1;critMultiplier;percent;3;15;35;70

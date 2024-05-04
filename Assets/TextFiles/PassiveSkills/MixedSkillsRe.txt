@@ -1,0 +1,2 @@
+1;Genius(Re);Increases base attack,base defence,base speed and base health by;health;4;attack;base;1;18;defence;base;1;18;speed;base;1;18;health;base;1;18
+2;Master engineer(Re);Increases healing done by;health;1;healing;percent;3;8;20;40

@@ -13,14 +13,15 @@ public class SetTechnology : MonoBehaviour
     [SerializeField] RawImage tip;
     [SerializeField] TextMeshProUGUI tipText;
 
-
+   
     // Start is called before the first frame update
     public string file="Assets/TextFiles/Technology.txt";
-    List<Technology> technologies=new List<Technology>();
+ 
     string fileText;
     void Start()
     {
-       setButtons();
+        if (!GlobalVariables.Instance.isTechnologyGenerated) generateTechnology();
+        setButtons();
          RectTransform[] children = canvas.GetComponentsInChildren<RectTransform>();
          int childrenCount=children.Length;
           children[3].SetSiblingIndex(childrenCount-1);
@@ -35,42 +36,50 @@ public class SetTechnology : MonoBehaviour
         }
     }
 
-    void setButtons(){
+    void generateTechnology(){
         if (File.Exists(file))
         {
             // Read all text from the file
             fileText = File.ReadAllText(file);
             string [] data=fileText.Split("\n");
             for(int i=0;i<data.Length;i++)
-            technologies.Add(new Technology(data[i],canvas,font,tip,tipText));
-            float startingY=(canvas.GetComponent<RectTransform>().sizeDelta.y/2)-(text.GetComponent<RectTransform>().sizeDelta.y*3);
-            float startingX=-(canvas.GetComponent<RectTransform>().sizeDelta.x/2);
-            const int BUTTON_X=200;
-            const int BUTTON_Y=100;
-            const int SPACE_BETWEEN=150;
-            startingX+=BUTTON_X;
-            float x=startingX;
-            float y=startingY;
-            
-            
-            foreach(Technology tech in technologies){
-                tech.generateButton(x,y,BUTTON_X,BUTTON_Y);
-                x+=BUTTON_X+SPACE_BETWEEN;
-                if(x>=(canvas.GetComponent<RectTransform>().sizeDelta.x/2-(BUTTON_X))){
-                    x=startingX;
-                    y-=(BUTTON_Y+SPACE_BETWEEN);
-                }
-                
+              GlobalVariables.Instance.technologies.Add(new Technology(data[i]));
+            GlobalVariables.Instance.isTechnologyGenerated = true;
+        }
+    }
+
+    void setButtons()
+    {
+        if (!GlobalVariables.Instance.isTechnologyGenerated) return;
+        float startingY = (canvas.GetComponent<RectTransform>().sizeDelta.y / 2) - (text.GetComponent<RectTransform>().sizeDelta.y * 3);
+        float startingX = -(canvas.GetComponent<RectTransform>().sizeDelta.x / 2);
+        const int BUTTON_X = 200;
+        const int BUTTON_Y = 100;
+        const int SPACE_BETWEEN = 150;
+        startingX += BUTTON_X;
+        float x = startingX;
+        float y = startingY;
+
+        foreach (Technology tech in GlobalVariables.Instance.technologies)
+        {
+            tech.generateButton(canvas,font,tip,tipText,x, y, BUTTON_X, BUTTON_Y);
+            x += BUTTON_X + SPACE_BETWEEN;
+            if (x >= (canvas.GetComponent<RectTransform>().sizeDelta.x / 2 - (BUTTON_X)))
+            {
+                x = startingX;
+                y -= (BUTTON_Y + SPACE_BETWEEN);
             }
-            if(GlobalVariables.Instance.currentTechnology!=0){
-                technologies[GlobalVariables.Instance.currentTechnology-1].setToActive();
-            }
+
+        }
+        if (GlobalVariables.Instance.currentTechnology != -1)
+        {
+            GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].setToActive();
         }
     }
     public void changeResearch(){
-            foreach(Technology tech in technologies){
+            foreach(Technology tech in GlobalVariables.Instance.technologies){
                 tech.resetToBase();
             }
-            technologies[GlobalVariables.Instance.currentTechnology-1].setToActive();
+            GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].setToActive();
     }
 }

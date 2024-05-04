@@ -11,9 +11,11 @@ public class Resource
     string description;
     int amount;
     int passiveIncome;
+    float gainMultiplier;
     Texture2D image;
     public Resource(int id,string name,string desc,int amount,string img,int passiveIncome=0){
         this.id = id;
+        gainMultiplier = 1.0f;
         this.name = name;
         this.description = desc;
         this.amount = amount;
@@ -27,9 +29,11 @@ public class Resource
     public void spend(int amountToSpend){
         amount-=amountToSpend;
     }
+    public void addToMultiplier(float amount) { gainMultiplier += amount; }
+    public void addToBase(int amount) { passiveIncome+= amount; }
     public void setAmount(int amount){this.amount=amount; }
     public void skipTime(int months){
-        amount+=months*passiveIncome;
+        amount+=months*(int)(passiveIncome*gainMultiplier);
     }
     public Texture2D getImage(){
         if(image!=null) return image;
@@ -55,7 +59,7 @@ public class Resource
     }
     public string getIncomeAsString(){
         string suffix="";
-        int incomeCopy=passiveIncome;
+        int incomeCopy= (int)(passiveIncome * gainMultiplier);
         string [] suffixes={"K","M","B"}; 
         for(int i=0;i<3;i++){
             if(incomeCopy/1000>=1){

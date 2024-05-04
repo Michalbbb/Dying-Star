@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SetSpaceSystems : MonoBehaviour
 {
     [SerializeField] RawImage [] alternatives;
+    [SerializeField] Button[] alternativesButtons;
     [SerializeField] TextMeshProUGUI [] alternativesText;
 
 
@@ -29,9 +30,14 @@ public class SetSpaceSystems : MonoBehaviour
         //image.GetComponent<RawImage>().texture=space.getImage();
     }
     private void showSystems(){
+        for(int i = 0; i < GlobalVariables.Instance.unlockedSystemAlternatives; i++)
+        {
+            alternativesButtons[i].GetComponent<Button>().interactable = true;
+        }
         int iterator=0;
         foreach(GenerateSystem sys in GlobalVariables.Instance.availableSpaceSystems){
             alternatives[iterator].GetComponent<RawImage>().texture=sys.getImage();
+            alternatives[iterator].GetComponent<RawImage>().color = Color.white;
             alternativesText[iterator].text=sys.getInfo();
             iterator++;
         }

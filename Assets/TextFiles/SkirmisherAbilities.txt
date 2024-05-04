@@ -1,0 +1,5 @@
+1;Crippling Shot;Deals damage equal to 120% of attack power to single enemy. Enemy hit by ability has 2 less movement points for next 3 turns.;4;2;damage;enemy;0;0;120;1;1;reducedMovementPoints;enemy;2;3;0;1;1;5;Skirm
+2;Fast shot;Deals damage equal to 100% of attack power to single enemy and increases own speed by 30% for next 3 turns;3;2;damage;enemy;0;0;100;1;1;increasedSpeed;self;30;3;0;1;1;5;Skirm
+3;Devasting Shot;Reduces enemy defence and attack by 40% for 3 turns and does no damage.;5;2;reducedAttack;enemy;40;3;0;1;1;reducedDefence;enemy;40;3;0;1;1;5;Skirm
+4;Quick Shot;Deals damage equal to 100% of attack power to single enemy. Gain additional turn.;2;2;damage;enemy;0;0;100;1;1;additionalTurn;self;0;0;0;1;1;2;Skirm
+5;Ragnarok;Deals damage equal to 80% of attack power to enemies in 3x3 range, reduces their defence by 60% and increases their damage taken by 50% for 2 turn;8;3;damage;enemy;0;0;80;3;3;reducedDefence;enemy;60;2;0;3;3;increasedDamageTaken;enemy;50;2;0;3;3;1;Skirm

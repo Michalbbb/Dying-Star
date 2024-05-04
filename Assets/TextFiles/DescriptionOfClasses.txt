@@ -1,0 +1,56 @@
+Skirmisher -
+-> Very low chance of getting support and defender abilities (10%)
+-> medium chance of getting destroyer abilites (30%)
+-> high chance to get skirmisher abilities (50%)
+-> 20% less dealt damage
+-> +2 movement points
+-> Can move after attack ( if has enough movement points )
+
+-> Very high speed
+-> Average health pool
+-> 5% base crit chance
+-> 130% base crit mutliplier
+-> Decent attack power 
+-> Below average defense
+ 
+Destroyer - 
+-> Very low chance of getting support and defender abilities (10%)
+-> Medium chance of getting skirmisher abilites (30%)
+-> High chance to get destroyer abilities (50%)
+
+-> Very low health pool
+-> High speed
+-> 15% base crit chance
+-> 150% base crit multiplier
+-> Very high attack power
+-> Very low defence
+
+Cruiser - 
+->Cannot get skirmisher abilities (0%)
+->Very low chance of getting destroyer abilites (10%)
+->Decent chance of getting support abilities (30%)
+->Very high chance of getting defender abilities (60%)
+
+-> Very low attack
+-> Very high defence
+-> Very high health pool
+-> Low speed
+-> 0% base crit chance
+-> 100% base crit multiplier
+
+Support - 
+->Cannot get destroyer abilities (0%)
+->Low chance of getting skirmisher and defender abilites (15%)
+->Only class that can get healing abililites (20%)
+->Very high chance of getting support abilities (50%)
+
+->Moderate attack, speed, health pool
+->High speed
+->0% base crit chance
+->100% base crit multiplier
+
+
+
+Abilities txt format:
+id;name;description;cooldown;numberOfEffects;effectType;targets;value;duration;scaling;rows;columns;range
+

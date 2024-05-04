@@ -82,15 +82,15 @@ public class SetStatusBar : MonoBehaviour
         rTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
         rTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+100,y/2-y/28,0);
         rTxt.alignment = TextAlignmentOptions.Center;
-        if(GlobalVariables.Instance.currentTech!=null){
-            rTxt.SetText(GlobalVariables.Instance.currentTech.getName());
+        if(GlobalVariables.Instance.currentTechnology!=-1){
+            rTxt.SetText(GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getName());
             GameObject time=new GameObject("Time");
             TextMeshProUGUI tTxt=time.AddComponent<TextMeshProUGUI>();
             time.transform.SetParent(targetSize.transform);
             tTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(200,30);
             tTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
             tTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+100,y/2-y/12,0);
-            tTxt.SetText("<color=yellow>"+GlobalVariables.Instance.currentTech.getResearchTime()+"</color>");
+            tTxt.SetText("<color=yellow>"+GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");
             tTxt.alignment = TextAlignmentOptions.Center;
             tTxt.fontSize=20;
             researchTime=time;
@@ -152,11 +152,11 @@ public class SetStatusBar : MonoBehaviour
                 incomeValue[iterator].GetComponent<TextMeshProUGUI>().SetText(res.getIncomeAsString());
                 iterator++;
             }
-            if(GlobalVariables.Instance.currentTech!=null){
-                researchTime.GetComponent<TextMeshProUGUI>().SetText("<color=yellow>"+GlobalVariables.Instance.currentTech.getResearchTime()+"</color>");
+            if(GlobalVariables.Instance.currentTechnology!=-1){
+                researchTime.GetComponent<TextMeshProUGUI>().SetText("<color=yellow>" + GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");
             }
             else{
-                researchTime.GetComponent<TextMeshProUGUI>().SetText("");
+                if(researchTime!=null)researchTime.GetComponent<TextMeshProUGUI>().SetText("");
                 techName.SetText("<color=red>Technology not chosen.</color>");
             }
             if(explorationTime!=null){
@@ -171,7 +171,7 @@ public class SetStatusBar : MonoBehaviour
     }
 
     public void forwardTillNextEvent(){
-            GlobalVariables.Instance.skipTime(3);
+            GlobalVariables.Instance.skipTime(120);
 
     }
 

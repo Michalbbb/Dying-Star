@@ -1,0 +1,2 @@
+1;Agression incarnation(Ex);Increases critical strike chance, critical strike multiplier and total attack by;attack;3;critChance;percent;1;10;critMultplier;percent;1;15;attack;percent;1;20 
+2;Architect of war(Ex);Increases base attack, total attack and flat attack by;attack;3;attack;flat;2;30;70;attack;base;2;15;40;attack;percent;2;7;15

@@ -1,0 +1,67 @@
+Pilots have:
+
+6 basic stats: Attack, Defence, Speed, Health Pool, Critial strike chance, Critical strike multiplier
+Attack - Most offensive abilites are scaled by ship attack. ( % of attack as damage)
+Defence - How much of incoming damage will be mitigated ( % damage mitigation based on ship defence and attacker's attack)
+Speed - It indicates in which order and how fast entities will take turn
+Health pool - How much damage entity can take.
+Critical strike chance - chance to deal damage multiplied by crtical strike multiplier
+
+Based on rarity pilot gain pool of stat points that are assigned based on ship class.
+1 stat point(sp) is worth:
+0.1 speed ( 10 sp per 1 speed )
+1 defence ( 1 sp per 1 defence)
+1 attack  ( 1 sp per 1 attack)
+8 health  ( 0.125 sp per 1 health)
+0.25 crit chance ( 4 sp per 1% critical strike chance)
+0.75 crit multiplier over 100% (1.34 sp per 1% critical strike multiplier over 100%)
+
+3 skills:
+
+2 random class skills ( refer to description of classes for more info, those skills have cooldown)
+1 basic skill that is shared between all pilots, it does 100% of attack as damage to 1 enemy in range and has no cooldown
+
+
+Level and associated with it skill tree:
+
+Max level of pilot is 11
+Every pilot gets pseudo randomly generated skill tree ( some rules are applied )
+Every level except for first gives pilot 1 skill point. ( 10 skill points at max level )
+Skill tree has 3 regions with base of 3 passive skills and up to 4 for Renowned + rarity pilots
+
+
+More informations about skills :
+They will have one of 6 associated icons types 
+Every passive skills has between 1 and 3 levels ( Every level gives benefits, if skill has 3 levels , third level will give biggest benefit.)
+One region can't have 2 or more same passive skills and passive skills can be repeated if they are in other region (Each region will have 3 different skills that can be rolled again in other region (with relatively low chance)))
+Passive skills are categorized into 3 groups: Offensive, Defensive and Mixed ( 7 base skills in each group and 2 renowned and exalted)
+Currently there are 21 base skills, 6 renowned and 6 exalted 
+Skills will be in txt files in below format:
+id;name;description;iconType;numberOfEffects;effectType;valueType;levels;value;
+iconType - information that will determinate which of 6 icons will be used
+effectType - something akin to tag that will tell what you can expect from skils fe.: attack,defence,critChance
+valueType - Either base percent, total percent or flat ( flat is const value,base percent is percent from base value, and total percent is applied after all modifiers and is multiplicative with pretty much any other sources except for total percent.)
+Icons type: attack, defence, speed, health, critChance, critMultiplier
+
+Pilots can be categorized into 5 level of rarity: Ordinary, Advanced, Veteran, Renowned, Exalted
+
+Main difference between them are stat points pools:
+Ordinary - 600 
+Advanced - 630
+Veteran - 660
+Renowned - 700
+Exalted - 750
+
+Other than that pilots of Renowned and Exalted rarity have chance to gain special passive skills unavailable for other rarity pilots
+Exalted pilots can gain Renowned and Exalted passive skills, but Renowned cannot gain Exalted
+
+
+Renowned pilot has 20% chance per region to get additional renowned passive skill ( 3 chances with 20% each , about 48.8% chance to get at least one renowned passive)
+Exalted pilot has 20% chance per region to get additional legendary passive skill and 46% to get additional renowned passive skill ( 3 chances with 66% each, about 96.5% chance to get at least one renowned+ passive)
+
+
+
+
+
+
+ 

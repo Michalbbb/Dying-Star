@@ -1,0 +1,2 @@
+1;Unbreakable(Re);Increases total defence and health by;defence;2;defence;percent;1;11;health;percent;1;11
+2;Elusive(Re);Increases base speed by;speed;1;speed;flat;2;4;10

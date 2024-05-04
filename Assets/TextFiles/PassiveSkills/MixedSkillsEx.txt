@@ -1,0 +1,2 @@
+1;Outrun death(Ex);Increases total speed and movement points by;speed;2;speed;percent;2;8;20;movementPoints;flat;2;1;2
+2;Lifebringer(Ex);Increases base speed and healing done by;health;2;healing;percent;1;40;speed;base;1;40

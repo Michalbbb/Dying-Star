@@ -1,0 +1,7 @@
+1;Upgraded engines;Increases base speed by;speed;1;speed;base;3;10;25;40
+2;More power;Increases speed by;speed;1;speed;flat;3;2;4;7
+3;Better pathing;Increases movement points by;speed;1;movementPoints;flat;2;1;2
+4;Supporting drones;Increases healing done by;health;1;healing;percent;3;4;10;20
+5;Quick on offense;Increases attack and speed by;attack;2;attack;flat;2;30;65;speed;flat;2;2;5
+6;Fast on defence;Increases defence and speed by;defence;2;defence;flat;2;30;65;speed;flat;2;2;5
+7;All rounder;Increases base attack,base defence,base speed and base health by;health;4;attack;base;2;6;15;defence;base;2;6;15;speed;base;2;6;15;health;base;2;6;15;

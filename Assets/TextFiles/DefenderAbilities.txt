@@ -1,0 +1,5 @@
+1;Defensive sphere;Increase defence of self and all nearby allies by 50% for 3 turns;5;1;increasedDefence;ally;50;3;0;3;3;0;Defend
+2;Energy shield;Gives ally shield equal to 35% of ship maximum health pool for 3 turns;2;1;shield;ally;35;3;0;1;1;5;Defend
+3;Defense mode;Decreased damage taken of all allies by 30% for 1 turn;3;1;reducedDamageTaken;ally;50;1;0;99;99;99;Defend
+4;Disruption;Reduces attack of enemies in 3x3 range by 60% for 2 turns;4;1;reducedAttack;enemy;60;2;0;3;3;4;Defend
+5;Go again;Every ally except self gains additional turn;8;1;additionalTurn;allyExceptSelf;0;0;0;99;99;99;Defend

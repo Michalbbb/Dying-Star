@@ -1,0 +1,5 @@
+1;Reckless Assault;Deals damage equal to 320% of attack power to single enemy and reduces own defence by 40% for 1 turn;3;2;damage;enemy;0;0;320;1;1;reducedDefence;self;40;1;0;1;1;5;Destro
+2;Piercing volley;Deals damage equal to 120% of attack power to enemy in line (3x1);4;1;damage;enemy;0;0;120;3;1;4;Destro
+3;Bombardment;Deals damage equal to 75% of attack power to enemy in 2x4 range;4;1;damage;enemy;0;0;75;2;4;2;Destro
+4;Lifestealer;Deals damage equal to 180% of attack power to single enemy and recover life by 60% of attack power.;3;2;damage;enemy;0;0;180;1;1;healByAttack;self;0;0;60;1;1;5;Destro
+5;Nuke!!!;Deals damage equal to 200% of attack power to all enemies and allies;8;2;damage;enemy;0;0;200;99;99;damage;ally;0;0;200;99;99;99;Destro

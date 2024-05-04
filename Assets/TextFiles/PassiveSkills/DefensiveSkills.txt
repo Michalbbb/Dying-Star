@@ -1,0 +1,7 @@
+1;Heavy Armoured;Increases base defence by;defence;1;defence;base;3;10;25;40
+2;Awarness;Increases defence by;defence;1;defence;flat;3;18;40;75
+3;Double plating;Increases total defence by;defence;1;defence;percent;3;3;7;15
+4;Energy conversion;Increases base health by;health;1;health;base;3;10;25;40
+5;Armour layers;Increases health by;health;1;health;flat;3;144;320;600
+6;Decentralized systems;Increases total health by;health;1;health;percent;3;3;7;15
+7;Blessed;Increases total defence and health by;defence;2;defence;percent;2;4;10;health;percent;2;4;10

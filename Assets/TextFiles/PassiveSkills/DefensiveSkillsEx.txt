@@ -1,0 +1,2 @@
+1;Unkillable(Ex);Increases total defence and health by;defence;2;defence;percent;1;15;health;percent;1;15
+2;True bastion(Ex);Increases base defence, total defence and flat defence by;defence;3;defence;flat;2;30;70;defence;base;2;15;40;defence;percent;2;7;15
