@@ -10,6 +10,7 @@ public class Hangar : MonoBehaviour
     public RawImage tip;
     public TextMeshProUGUI tipText;
     public Canvas tipCanvas;
+    
     private void OnMouseUpAsButton() {
        SceneManager.LoadScene("Hangar");
     }

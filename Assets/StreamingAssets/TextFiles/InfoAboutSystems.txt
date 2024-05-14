@@ -1,0 +1,50 @@
+Systems have 5 possible threat levels:
+Very Low - Expected total power of 600
+Low - Expected total power of 1200
+Medium - Expected total power of 2000
+High - Expected total power of 4000
+Lethal - Expected total power of 8000
+[Total power] is random value between 50% and 150% of expected total power ( fe. Medium threat level will have actual power between 1000 and 3000)
+[Power] is sum of stat of the entity * weigth ([Ordinary] pilots at level 1 and WITHOUT any equipment will have around 600 power)
+Higher threat level means better reward for successful exploration and higher chance to find habitable planet ( which at this moment is objective for winning game )
+Chance to find habitable planet is equal to:
+Very low - -10% + 1% ppse ( up to 20% )
+Low - 0% +1% ppse ( up to 40% )
+Medium - 0% + 2% ppse ( up to 60% )
+High - 3% + 3% ppse ( up to 100% )
+Lethal - 15% + 4% ppse ( up to 100% )
+[ppse] - per previous successful exploration ( stackable , fe. if player has done 5 successful exploration his chance to find habitable planet will be equal to 5% on [Low] threat level and equal to 35% on [Lethal] level
+[ppse] is sum of explorations regardless of difficulty
+Player can send up to 4 pilots on one exploration. ( sending one pilot on mission means using 1 hyperdrive )
+If all ships are destroyed in battle, pilots will be deleted from pool of recruited (dead) and hyperdrives will be lost
+If any of the ships survive, all pilots are considered alive, exploration is marked as successful and nothing is lost. 
+Rewards are random and multiplied by threat level.
+Mulitplier is:
+Very low - 1* for nulls and metals, 0.3* titan v2, 0.1* Quame, 0.3* encre 
+Low - 1* for nulls and metals, 0.5* titan v2, 0.2* Quame, 0.5* encre 
+Medium - 1.5* for nulls and metals, 1* titan v2, 0.5* Quame, 1* encre 
+High - 2* for nulls and metals, 2* titan v2, 1* Quame, 2* encre 
+Lethal - 3* for nulls and metals, 5* titan v2, 2* Quame, 5* encre 
+
+Random values of rewards ( pre modifier ) = 
+Nulls - ( 20 000 - 80 000 )
+Metals - ( 800 - 2 000 )
+Titan - ( 200 - 400 )
+Encre - ( 200 - 400 )
+Quame - ( 100 - 200 )
+
+System threat is assigned based on equation :
+((x-541)/500+0.15)*y
+where:
+x is current year in game
+y is random number between 0 and 9
+Based on rolled number (int, rounded down) threat level is assigned:
+0 - Very low
+1 - Low
+2 - Medium
+3 - High
+4+ - Lethal
+
+Exploration time is random between 5 to 25 years ( this may and probably will be changed )
+
+

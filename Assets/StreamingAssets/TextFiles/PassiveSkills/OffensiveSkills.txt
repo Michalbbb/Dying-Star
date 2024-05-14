@@ -1,0 +1,7 @@
+1;Opportunist;Increases critical strike chance by;critChance;1;critChance;percent;3;2;5;9
+2;Exploit weakness;Increases critical strike multiplier by;critMultiplier;1;critMultiplier;percent;3;6;15;27
+3;Additional lasers;Increases base attack by;attack;1;attack;base;3;10;25;40
+4;Custom made ammunition;Increases attack by;attack;1;attack;flat;2;30;70
+5;Hostility;Increases total attack by;attack;1;attack;percent;3;3;7;15
+6;Brutality;Increases critical strike chance and critical strike multiplier by;critMultiplier;2;critChance;percent;2;2;5;critMultiplier;percent;2;10;25
+7;Hunter;Increases critical strike chance and critical strike multiplier by;critChance;2;critChance;percent;2;4;10;critMultiplier;percent;2;5;12

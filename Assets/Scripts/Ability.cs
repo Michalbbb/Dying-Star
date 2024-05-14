@@ -117,13 +117,13 @@ public class GenerateAbility // Singleton responsible for generating abilities f
             }
         }
     }
-    string [] type = { "Assets/TextFiles/SkirmisherAbilities.txt", "Assets/TextFiles/DestroyerAbilities.txt", "Assets/TextFiles/DefenderAbilities.txt", 
-        "Assets/TextFiles/SupportAbilities.txt","Assets/TextFiles/HealingAbilities.txt"}; // 0 - Skirmisher, 1 - Destroyer, 2 - Defender, 3 - Support, 4 - Healing 
+    string [] type = { Path.Combine(Application.streamingAssetsPath,"TextFiles/SkirmisherAbilities.txt"), Path.Combine(Application.streamingAssetsPath,"TextFiles/DestroyerAbilities.txt"), Path.Combine(Application.streamingAssetsPath,"TextFiles/DefenderAbilities.txt"), 
+        Path.Combine(Application.streamingAssetsPath,"TextFiles/SupportAbilities.txt"),Path.Combine(Application.streamingAssetsPath,"TextFiles/HealingAbilities.txt")}; // 0 - Skirmisher, 1 - Destroyer, 2 - Defender, 3 - Support, 4 - Healing 
     int[] skirmisherChances = { 2, 3, 1, 1, 1, 0, 0, 0, 0, 0};
     int[] destroyerChances = { 2, 3, 1, 1, 1, 1, 1, 0, 0, 0};
     int[] cruiserChances = { 1, 3, 3, 3, 2, 2, 2, 2, 2, 2};
     int[] supportChances = { 0, 2, 2, 4, 4, 3, 3, 3, 3, 3};
-    string baseAbility = "1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;4;Attack";
+    string baseAbility = "1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;4;baseAttack";
     public List<Ability> generateTwo(int pilotClass)
     {
         List<Ability> twoAbilites = new List<Ability>();

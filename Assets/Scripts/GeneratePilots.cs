@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,15 +18,15 @@ public class GeneratePilots : MonoBehaviour
     readonly int baseVeteranRarityChance = 25;
     readonly int baseAdvancedRarityChance = 50;
     readonly string[] names = { "James", "Mohammed", "Santiago", "Liu", "Ravi", "Ahmed", "Antonio", "Hiroshi", "Youssef", "Vladimir", "Sophia", "Aisha", "Olga", "Yuna", "Fatima", "Mia", "Ananya", "Sakura", "Layla", "Wei" };
-    readonly string[] surnames = { "Smith", "Garcia", "Kim", "Müller", "Singh", "González", "Yamamoto", "Silva", "Lopez", "Patel", "Chen", "Novak", "Ali", "Jansen", "Ramos", "Kaur", "Lee", "Hernandez", "Ferreira", "Nguyen" };
+    readonly string[] surnames = { "Smith", "Garcia", "Kim", "Muller", "Singh", "Gonzalez", "Yamamoto", "Silva", "Lopez", "Patel", "Chen", "Novak", "Ali", "Jansen", "Ramos", "Kaur", "Lee", "Hernandez", "Ferreira", "Nguyen" };
     readonly float critChanceCost=4f;
     readonly float critMultiplierCost=1.34f;
     readonly float attackCost=1f;
     readonly float defenceCost=1f;
     readonly float healthCost=0.125f;
     readonly float speedCost=10f;
-    float baseY = Screen.height / 2.5f;
-    float pilotHeight = Screen.height / 4;
+    float baseY = Screen.height/4.5f;
+    float pilotHeight = Screen.height/4.5f;
 
     [SerializeField] Canvas canvas;
     void Start()
@@ -35,18 +36,14 @@ public class GeneratePilots : MonoBehaviour
         {
             GlobalVariables.Instance.firstRollDone = true;
             GlobalVariables.Instance.pilotsInPool = generatePilots(3);
+            GlobalVariables.Instance.freeDrafts--;
 
-        }
-
-        foreach(Pilot p in GlobalVariables.Instance.recruitedPilots)
-        {
-            Debug.Log(p.getAllInfo());
         }
         float y = baseY;
         foreach (Pilot p in GlobalVariables.Instance.pilotsInPool)
         {
             p.generatePortrait(canvas, 0, y);
-            y -= (pilotHeight*1.8f);
+            y -= (pilotHeight*1.15f);
         }
        
     }
@@ -73,7 +70,7 @@ public class GeneratePilots : MonoBehaviour
         foreach (Pilot p in GlobalVariables.Instance.pilotsInPool)
         {
             p.generatePortrait(canvas, 0, y);
-            y -= (pilotHeight * 1.8f);
+            y -= (pilotHeight * 1.15f);
         }
 
     }
@@ -127,13 +124,30 @@ public class GeneratePilots : MonoBehaviour
     }
     public void basicDraft()
     {
-        GlobalVariables.Instance.pilotsInPool = generatePilots(3);
+        var gv=GlobalVariables.Instance;
+        if(gv.freeDrafts>0)gv.freeDrafts--;
+        else if(gv.listOfResources[0].check(gv.basicDraftNullsPrice)){
+            gv.listOfResources[0].spend(gv.basicDraftNullsPrice);
+            gv.basicDraftNullsPrice+=10000;
+        }
+        else return;
+        gv.pilotsInPool = generatePilots(3);
+        gv.updateGameStatus=true;
         refreshList();
 
     }
     public void encreDraft()
     {
-        GlobalVariables.Instance.pilotsInPool = generatePilots(3,true);
+        var gv=GlobalVariables.Instance;
+        if(gv.listOfResources[0].check(gv.encreDraftNullsPrice)&&gv.listOfResources[4].check(gv.encreDraftEncrePrice)){
+            gv.listOfResources[0].spend(gv.encreDraftNullsPrice);
+            gv.listOfResources[4].spend(gv.encreDraftEncrePrice);
+            gv.basicDraftNullsPrice+=10000;
+            gv.encreDraftEncrePrice+=1000;
+        }
+        else return;
+        gv.pilotsInPool = generatePilots(3,true);
+        gv.updateGameStatus=true;
         refreshList();
 
     }

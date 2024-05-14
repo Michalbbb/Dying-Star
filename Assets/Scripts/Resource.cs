@@ -35,6 +35,9 @@ public class Resource
     public void skipTime(int months){
         amount+=months*(int)(passiveIncome*gainMultiplier);
     }
+    public void add(int amount){
+        this.amount+=amount;
+    }
     public Texture2D getImage(){
         if(image!=null) return image;
         return Resources.Load<Texture2D>("ph");

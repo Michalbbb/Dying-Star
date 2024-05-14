@@ -1307,8 +1307,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Research speed: 100%'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ab1b7d1eff4c6cb478a03f8a8d84c6f8, type: 2}
-  m_sharedMaterial: {fileID: 404819396784368206, guid: ab1b7d1eff4c6cb478a03f8a8d84c6f8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1550,4 +1550,4 @@ MonoBehaviour:
   font: {fileID: 11400000, guid: ab1b7d1eff4c6cb478a03f8a8d84c6f8, type: 2}
   tip: {fileID: 1711135014}
   tipText: {fileID: 673300890}
-  file: Assets/TextFiles/Technology.txt
+  file: TextFiles/Technology.txt

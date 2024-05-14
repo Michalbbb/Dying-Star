@@ -1,0 +1,48 @@
+Equipment can be added to ship. Every ship has 3 slots for equipment. Equipment has pool of stats with variation (same quality items can have different sum of stats). Equipment have base stats and additional stats. 
+Equipment has 2 random stats. Additionally random stats are getting boost multiplier depending on quality.
+There are 3 qualities of equipment:
+-Ordinary (110 - 165 base stat pool) (*1 multiplier)
+-Excellent *1.3 multiplier for base and additional stats
+-Superior *1.8  multiplier for base and additional stats
+Equipment is categorized into 3 parts : 
+Support module -
+ base stats:
+ ->extra flat speed  (6 - 10)
+ ->extra flat health (400-520)
+ random additional stats:
+ ->healing done
+ ->extra base percent speed
+ ->extra total percent speed
+ ->extra movement point 
+ ->extra flat health
+ ->extra total percent health
+ ->extra base percent health
+Force field -
+ base stats:
+ ->extra flat defence (35 - 65)
+ ->extra flat health (600-800)
+ random additional stats:
+ ->extra flat speed
+ ->extra flat health
+ ->extra total percent health
+ ->extra base percent health
+ ->extra flat defence
+ ->extra total percent defence
+ ->extra base percent defence
+Energy booster - 
+ base stats:
+ ->extra flat speed  (4 - 8)
+ ->extra flat attack (78 - 101)
+ random additional stats:
+ ->critical strike chance
+ ->critical strike multiplier
+ ->extra movement point 
+ ->extra flat attack
+ ->extra total percent attack
+ ->extra base percent attack
+ ->extra base percent speed
+
+Equipment can be forged in factory (hangar) and quality of it isn't random ( price depends on chosen quality )
+Ordinary - 1000 metals 
+Excellent - 900 metals 100 titan v2
+Superior - 500 metals 500 titan v2

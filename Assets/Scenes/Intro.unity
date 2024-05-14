@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 119449458}
   - component: {fileID: 119449457}
   - component: {fileID: 119449456}
+  - component: {fileID: 119449459}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -295,6 +296,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119449454}
   m_CullTransparentMesh: 1
+--- !u!114 &119449459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119449454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab45768661814734d8b34f5da1f9ccd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1431721322}
+  target: {fileID: 1078031388}
 --- !u!1 &134874105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961214be683f23641bf6348a0160fc04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorType: 1
+  enterCursorType: 0
   downCursorType: 2
 --- !u!1 &1584944404
 GameObject:
@@ -1149,10 +1164,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 32.05
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

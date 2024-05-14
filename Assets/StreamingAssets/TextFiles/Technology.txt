@@ -1,0 +1,12 @@
+1;1;Super computer;By building super computer capable of supporting our scientists, our research rate should be greatly improved;1;Research rate is multiplied by 1.25 times;researchRate;more;25;240;
+2;1;Upgraded weapons;Let's try upgrade our weapons and hope not many of people die in process.;1;Increased base attack of ships by 15%;baseAttack;increased;15;120;
+3;1;Energy shields;Energy shields would considerably improve ship defences.;1;Increased base defense of ships by 15%;baseDefense;increased;15;120;
+4;1;Super Light Materials;Reducing weight of ship means they will be faster;1;Increased base speed of ships by 10%;baseSpeed;increased;10;240;
+5;0;Alien parts;Our scientists claim they can use parts of aliens we faced to upgrade our ships.;1;Increased total attack of ships by 20%;attack;increased;20;600;
+6;0;Voll infused hull;Voll seems to be excellent material for strengthening our ships;1;Increased total defense of ships by 20%;defense;increased;20;600;
+7;0;Ter study;With enough time we should be able to use ter as source of power for ships and entire facility;4;Increased total attack of ships by 5%;attack;increased;5;Increased total defense of ships by 5%;defense;increased;5;Increased total speed of ships by 15%;speed;increased;15;40% more nulls per month;resource1;increased;40;1800;
+8;1;Additonal sources of energy;We should look for other sources of energy to minimize costs.;1;+2000 nulls per month;resource1;additional;2000;120;
+9;0;Update training program;Updating training program of pilots will results in better available recruits;2;+2 to level of new recruits;levelPilot;increased;2;Chance of appearing better pilots increased by 100%;pilotQuality;increased;100;600;
+10;1;Hyperdrive study;Further upgrade in hyperdrive might result in even faster travel between systems.;1;10% faster travel in hyperspace;travelSpeed;increased;10;480;
+11;1;AI assistants;Make AI that will support our pilots;1;Increased pilots experience gain by 25%;expGain;increased;25;480;
+12;1;Stronger sensors;Building better sensors will result in better scouting ability.THIS TECHNOLOGY WILL REFRESH AVAILABLE SYSTEMS!;1;One more explorable space system will be available to chose from;travelAlternative;increased;1;480; 

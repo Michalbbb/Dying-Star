@@ -51,6 +51,7 @@ public class Information
         text.font=this.font;
         text.alignment=TextAlignmentOptions.Center;
         textObject.GetComponent<RectTransform>().localPosition=new Vector3(0,0,0);
+        textObject.GetComponent<RectTransform>().sizeDelta=new Vector2(sizeX,sizeY);
 
         
         // Add a listener to the button to handle clicks
@@ -73,7 +74,25 @@ public class Information
             exitEntry.callback.AddListener((data) => { OnMouseExit(); });
 
             eventTrigger.triggers.Add(exitEntry);
+
+            EventTrigger.Entry downEntry = new EventTrigger.Entry();
+            downEntry.eventID=EventTriggerType.PointerDown;
+            downEntry.callback.AddListener((data) => { OnMouseDown(); });
+
+            eventTrigger.triggers.Add(downEntry);
+
+            EventTrigger.Entry upEntry = new EventTrigger.Entry();
+            upEntry.eventID=EventTriggerType.PointerUp;
+            upEntry.callback.AddListener((data) => { OnMouseUp(); });
+
+            eventTrigger.triggers.Add(upEntry);
     return true;
+    }
+    void OnMouseUp(){
+            if(unlocked == 1)CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Clickable);
+    }
+    void OnMouseDown(){
+        if(unlocked == 1)CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
     }
     void OnButtonClick()
     {
@@ -82,7 +101,6 @@ public class Information
         GlobalVariables.Instance.changeInfoHighlight=true;
         details.text=desc;
         GlobalVariables.Instance.currentInfo=id;
-        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
         }
     }
   private void OnMouseEnter() {

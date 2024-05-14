@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +16,9 @@ public class SetStatusBar : MonoBehaviour
     List<GameObject> resourceValue;
     List<GameObject> incomeValue;
 
-    GameObject researchTime;
-    TextMeshProUGUI techName;
+    TextMeshProUGUI researchInfo;
 
-    GameObject explorationTime;
+    TextMeshProUGUI explorationTime;
 
     GameObject date;
     // Start is called before the first frame update
@@ -28,47 +28,54 @@ public class SetStatusBar : MonoBehaviour
         incomeValue=new List<GameObject>();
         float x=targetSize.GetComponent<RectTransform>().sizeDelta.x;
         float y=targetSize.GetComponent<RectTransform>().sizeDelta.y;
+        float rIX =x;
+        float rIY=y/8;
         if(rawImage!=null && targetSize !=null){
-            rawImage.GetComponent<RectTransform>().sizeDelta=new Vector2(x,y/8);
+            rawImage.GetComponent<RectTransform>().sizeDelta=new Vector2(rIX,rIY);
         }
-        rawImage.GetComponent<RectTransform>().localPosition=new Vector3(0,y/2-y/16,0);
-        const float ICON_SIZE=50;
-        float startingX=-targetSize.GetComponent<RectTransform>().sizeDelta.x/2+ICON_SIZE;
-        float SPACE_BETWEEN=ICON_SIZE+50;
+        rawImage.GetComponent<RectTransform>().localPosition=new Vector3(0,y/2-rIY/2,0);
+        float ICON_SIZE=x*0.04f;
+        float startingX=-targetSize.GetComponent<RectTransform>().sizeDelta.x/2+ICON_SIZE/2;
+        float SPACE_BETWEEN=x*0.07f;
         foreach(Resource res in GlobalVariables.Instance.listOfResources){
             GameObject gmObject = new GameObject("Resource");
             RawImage image = gmObject.AddComponent<RawImage>();
-            gmObject.transform.SetParent(targetSize.transform);
+            gmObject.transform.SetParent(rawImage.transform);
             image.GetComponent<RectTransform>().sizeDelta=new Vector2(ICON_SIZE,ICON_SIZE);
             image.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            image.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/14,0);
+            image.GetComponent<RectTransform>().localPosition=new Vector3(startingX,0,0);
             GameObject name=new GameObject("Name"); 
             GameObject value=new GameObject("Value");
             GameObject inc=new GameObject("Income");
             TextMeshProUGUI txt=name.AddComponent<TextMeshProUGUI>();
-            name.transform.SetParent(targetSize.transform);
+            name.transform.SetParent(rawImage.transform);
             TextMeshProUGUI val=value.AddComponent<TextMeshProUGUI>();
-            value.transform.SetParent(targetSize.transform);
+            value.transform.SetParent(rawImage.transform);
             TextMeshProUGUI income=inc.AddComponent<TextMeshProUGUI>();
-            income.transform.SetParent(targetSize.transform);
-            txt.GetComponent<RectTransform>().sizeDelta=new Vector2(80,30);
+            income.transform.SetParent(rawImage.transform); 
+            txt.GetComponent<RectTransform>().sizeDelta=new Vector2(ICON_SIZE,rIY*0.2f);
             txt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            txt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+15,y/2-y/32,0);
+            txt.GetComponent<RectTransform>().localPosition=new Vector3(startingX,rIY/2-rIY*0.1f,0);
             txt.SetText(res.getName());
-            txt.fontSize=15;
-            
-            val.GetComponent<RectTransform>().sizeDelta=new Vector2(50,50);
+            txt.fontSize=8;
+            txt.enableAutoSizing=true;
+            txt.alignment=TextAlignmentOptions.Center;
+            val.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.025f,rIY*0.2f);
             val.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            val.GetComponent<RectTransform>().localPosition=new Vector3(startingX+ICON_SIZE+10,y/2-y/10,0);
+            val.GetComponent<RectTransform>().localPosition=new Vector3(startingX+ICON_SIZE*0.9f,rIY/2-ICON_SIZE/2,0);
             val.SetText(res.getAmountAsString());
-            val.fontSize=15;
+            val.fontSize=8;
+            val.enableAutoSizing=true;
+            val.alignment=TextAlignmentOptions.Center;
             resourceValue.Add(value);
 
-            income.GetComponent<RectTransform>().sizeDelta=new Vector2(50,50);
+            income.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.025f,rIY*0.2f);
             income.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            income.GetComponent<RectTransform>().localPosition=new Vector3(startingX+ICON_SIZE+10,y/2-y/8,0);
+            income.GetComponent<RectTransform>().localPosition=new Vector3(startingX+ICON_SIZE*0.9f,rIY/2-ICON_SIZE/2-rIY*0.2f,0);
             income.SetText("<color=yellow>+"+res.getIncomeAsString()+"</color>");
-            income.fontSize=13;
+            income.fontSize=8;
+            income.enableAutoSizing=true;
+            income.alignment=TextAlignmentOptions.Center;
             incomeValue.Add(inc);
 
             startingX+=SPACE_BETWEEN;
@@ -77,68 +84,55 @@ public class SetStatusBar : MonoBehaviour
         }
         GameObject research=new GameObject("Research");
         TextMeshProUGUI rTxt=research.AddComponent<TextMeshProUGUI>();
-        research.transform.SetParent(targetSize.transform);
-        rTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(200,30);
+        research.transform.SetParent(rawImage.transform);
+        rTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.14f,rIY);
         rTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-        rTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+100,y/2-y/28,0);
+        rTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+x*0.07f,0,0);
         rTxt.alignment = TextAlignmentOptions.Center;
         if(GlobalVariables.Instance.currentTechnology!=-1){
-            rTxt.SetText(GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getName());
-            GameObject time=new GameObject("Time");
-            TextMeshProUGUI tTxt=time.AddComponent<TextMeshProUGUI>();
-            time.transform.SetParent(targetSize.transform);
-            tTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(200,30);
-            tTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            tTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+100,y/2-y/12,0);
-            tTxt.SetText("<color=yellow>"+GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");
-            tTxt.alignment = TextAlignmentOptions.Center;
-            tTxt.fontSize=20;
-            researchTime=time;
-
+            rTxt.SetText(GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getName()+"\n"+"<color=yellow>"+GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");     
         }
         else rTxt.SetText("<color=red>Technology not chosen.</color>");
         rTxt.fontSize=20;
-        techName=rTxt;
-        startingX+=300;
+        rTxt.enableAutoSizing=true;
+        rTxt.alignment=TextAlignmentOptions.Center;
+        researchInfo=rTxt;
+        startingX+=x*0.23f;
 
         GameObject exploration=new GameObject("Exploration");
         TextMeshProUGUI eTxt=exploration.AddComponent<TextMeshProUGUI>();
-        exploration.transform.SetParent(targetSize.transform);
-        eTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(200,30);
+        exploration.transform.SetParent(rawImage.transform);
+        eTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.14f,rIY);
         eTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-        eTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/28,0);
+        eTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+0.07f,0,0);
         eTxt.alignment = TextAlignmentOptions.Center;
-        if(GlobalVariables.Instance.chosenSpaceSystem!=null){
-            eTxt.SetText(GlobalVariables.Instance.chosenSpaceSystem.getInfo());
-            GameObject time=new GameObject("Time");
-            TextMeshProUGUI tTxt=time.AddComponent<TextMeshProUGUI>();
-            time.transform.SetParent(targetSize.transform);
-            tTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(200,30);
-            tTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-            tTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/12,0);
-            tTxt.SetText("<color=yellow>"+"TODO"+"</color>");
-            tTxt.alignment = TextAlignmentOptions.Center;
-            tTxt.fontSize=20;
-            explorationTime=time;
-
+        if(GlobalVariables.Instance.currentlyExploring.Count>0){
+            eTxt.SetText("TODO FOR NOW");
         }
         else eTxt.SetText("<color=red>Pilots are waiting to be assigned.</color>");
+        explorationTime=eTxt;
         eTxt.fontSize=20;
-        startingX+=165;
+        eTxt.enableAutoSizing=true;
+        eTxt.alignment=TextAlignmentOptions.Center;
+        startingX+=x*0.15f;
         GameObject dateHolder=new GameObject("Date");
         TextMeshProUGUI dTxt=dateHolder.AddComponent<TextMeshProUGUI>();
-        dateHolder.transform.SetParent(targetSize.transform);
-        dTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(120,70);
+        dateHolder.transform.SetParent(rawImage.transform);
+        dTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.14f,rIY);
         dTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
-        dTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/16,0);
+        dTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+0.07f,0,0);
         dTxt.SetText("Date\n"+"01."+GlobalVariables.Instance.getMonth()+"."+GlobalVariables.Instance.year.ToString());
         dTxt.alignment = TextAlignmentOptions.Center;
         dTxt.fontSize=25;
+        dTxt.enableAutoSizing=true;
         date=dateHolder;
-        startingX+=100;
-        skipMonth.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/16,0);
-        startingX+=65;
-        skipTillNextEvent.GetComponent<RectTransform>().localPosition=new Vector3(startingX,y/2-y/16,0);
+        startingX+=x*0.11f;
+        float buttonSize = rIY*0.7f < x*0.09f ? rIY*0.7f : x*0.09f;
+        skipMonth.GetComponent<RectTransform>().sizeDelta=new Vector2(buttonSize,buttonSize);
+        skipTillNextEvent.GetComponent<RectTransform>().sizeDelta=new Vector2(buttonSize,buttonSize);
+        skipMonth.GetComponent<RectTransform>().localPosition=new Vector3(startingX,0,0);
+        startingX+=buttonSize*1.2f;
+        skipTillNextEvent.GetComponent<RectTransform>().localPosition=new Vector3(startingX,0,0);
         
 
 
@@ -153,14 +147,13 @@ public class SetStatusBar : MonoBehaviour
                 iterator++;
             }
             if(GlobalVariables.Instance.currentTechnology!=-1){
-                researchTime.GetComponent<TextMeshProUGUI>().SetText("<color=yellow>" + GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");
+                researchInfo.SetText(GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getName()+"\n"+"<color=yellow>"+GlobalVariables.Instance.technologies[GlobalVariables.Instance.currentTechnology].getResearchTime()+"</color>");
             }
             else{
-                if(researchTime!=null)researchTime.GetComponent<TextMeshProUGUI>().SetText("");
-                techName.SetText("<color=red>Technology not chosen.</color>");
+                researchInfo.SetText("<color=red>Technology not chosen.</color>");
             }
-            if(explorationTime!=null){
-                explorationTime.GetComponent<TextMeshProUGUI>().SetText("<color=yellow>"+"TODO"+"</color>");
+            if(GlobalVariables.Instance.currentlyExploring.Count>0){
+                explorationTime.SetText("<color=yellow>"+"TODO"+"</color>");
             }
             updateDate();
             GlobalVariables.Instance.updateGameStatus=false;

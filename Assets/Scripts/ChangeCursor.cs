@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeCursor : MonoBehaviour
 {
@@ -25,13 +26,19 @@ public class ChangeCursor : MonoBehaviour
     public void SwitchToDown(){
         CursorManager.Instance.SetActiveCursorType(downCursorType);
     }
+    public void SwitchToDownConditionalButton(Button button){
+        if(button.interactable==true)CursorManager.Instance.SetActiveCursorType(downCursorType);
+        else CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Default);
+    }
+    public void SwitchToEnterConditionalButton(Button button){
+        if(button.interactable==true)CursorManager.Instance.SetActiveCursorType(enterCursorType);
+        else CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Default);
+    }
     public void SwitchToEnter(){
         CursorManager.Instance.SetActiveCursorType(enterCursorType);
 
     }
     public void SwitchToDefault(){
      CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Default);
-
-
     }
 }

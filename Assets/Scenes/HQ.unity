@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961214be683f23641bf6348a0160fc04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorType: 1
+  enterCursorType: 0
   downCursorType: 2
 --- !u!114 &1093853771
 MonoBehaviour:
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 150, y: 55}
-  m_Spacing: {x: 0, y: 55}
+  m_Spacing: {x: 0, y: 30}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!1 &1445919613
@@ -2153,4 +2153,4 @@ MonoBehaviour:
   text: {fileID: 409791496}
   details: {fileID: 38672116}
   font: {fileID: 11400000, guid: ab1b7d1eff4c6cb478a03f8a8d84c6f8, type: 2}
-  file: Assets/TextFiles/Informations.txt
+  grid: {fileID: 1351168322}

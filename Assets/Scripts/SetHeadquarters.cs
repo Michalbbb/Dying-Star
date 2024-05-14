@@ -13,15 +13,17 @@ public class SetHeadquarters : MonoBehaviour
     [SerializeField] TextMeshProUGUI details;
     [SerializeField] TMP_FontAsset font;
 
+    [SerializeField] GameObject grid;
+
 
     // Start is called before the first frame update
-    public string file="Assets/TextFiles/Informations.txt";
+    string file=Path.Combine(Application.streamingAssetsPath,"TextFiles/Informations.txt");
     List<Information> informations=new List<Information>();
     string fileText;
     void Start()
     {
        setButtons();
-       
+       resetAll();
 
     }
     private void Update() {
@@ -34,12 +36,13 @@ public class SetHeadquarters : MonoBehaviour
     void setButtons(){
         if (File.Exists(file))
         {
-            // Read all text from the file
             fileText = File.ReadAllText(file);
             string [] data=fileText.Split("\n");
-            const int BUTTON_X=165;
-            const int BUTTON_Y=55;
-            const int SPACE_BETWEEN=55;
+            int BUTTON_X=Screen.width/10;
+            int BUTTON_Y=Screen.height/9;
+            int SPACE_BETWEEN=Screen.height/18;
+            grid.GetComponent<GridLayoutGroup>().cellSize=new Vector2(BUTTON_X,BUTTON_Y);
+            grid.GetComponent<GridLayoutGroup>().spacing=new Vector2(0,SPACE_BETWEEN);
 
             rawImage.GetComponent<RectTransform>().sizeDelta=new Vector2(rawImage.GetComponent<RectTransform>().sizeDelta.x,(BUTTON_Y+SPACE_BETWEEN)*data.Length-SPACE_BETWEEN); 
 
@@ -55,9 +58,6 @@ public class SetHeadquarters : MonoBehaviour
             float y=0;            
             foreach(Information info in informations){
                 if(info.generateButton(x,y,BUTTON_X,BUTTON_Y))y-=(BUTTON_Y+SPACE_BETWEEN);
-                
-               
-                
             }
             if(GlobalVariables.Instance.currentInfo!=0){
                 informations[GlobalVariables.Instance.currentInfo-1].setToActive();
@@ -69,5 +69,10 @@ public class SetHeadquarters : MonoBehaviour
                 info.resetToBase();
             }
             informations[GlobalVariables.Instance.currentInfo-1].setToActive();
+    }
+    private void resetAll(){
+        foreach(Information info in informations){
+                info.resetToBase();
+            }
     }
 }

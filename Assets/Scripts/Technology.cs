@@ -111,6 +111,31 @@ public class Technology{
             exitEntry.callback.AddListener((data) => { OnMouseExit(); });
 
             eventTrigger.triggers.Add(exitEntry);
+
+            EventTrigger.Entry downEntry = new EventTrigger.Entry();
+            downEntry.eventID=EventTriggerType.PointerDown;
+            downEntry.callback.AddListener((data) => { OnMouseDown(); });
+
+            eventTrigger.triggers.Add(downEntry);
+
+            EventTrigger.Entry upEntry = new EventTrigger.Entry();
+            upEntry.eventID=EventTriggerType.PointerUp;
+            upEntry.callback.AddListener((data) => { OnMouseUp(); });
+
+            eventTrigger.triggers.Add(upEntry);
+
+
+
+    }
+    void OnMouseDown(){
+        if (!completed&&unlocked==1){
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
+        }
+    }
+    void OnMouseUp(){
+        if (!completed&&unlocked==1){
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Clickable);
+        }
     }
     void OnButtonClick()
     {
@@ -118,7 +143,6 @@ public class Technology{
         if(!completed&&unlocked == 1){
         GlobalVariables.Instance.changeTechnology=true;
         GlobalVariables.Instance.currentTechnology=id-1;
-        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
         }
     }
   private void OnMouseEnter() {
@@ -248,21 +272,13 @@ public class Technology{
                 if (effect[i] == "reduced")
                     GlobalVariables.Instance.rarityMultiplier -= val;
             }
-            else if(type[i] == "upkeepShip")
-            {
-                float val = (value[i]/100f);
-                if (effect[i] == "increased")
-                    GlobalVariables.Instance.shipUpkeepMultiplier += val;
-                if (effect[i] == "reduced")
-                    GlobalVariables.Instance.shipUpkeepMultiplier -= val;
-            }
             else if(type[i] == "levelPilot")
             {
                 int val = value[i];
                 if (effect[i] == "increased")
-                    GlobalVariables.Instance.shipUpkeepMultiplier += val;
+                    GlobalVariables.Instance.startingLevelOfPilots += val;
                 if (effect[i] == "reduced")
-                    GlobalVariables.Instance.shipUpkeepMultiplier -= val;
+                    GlobalVariables.Instance.startingLevelOfPilots -= val;
             }
             else if(type[i] == "travelAlternative")
             {
@@ -289,7 +305,7 @@ public class Technology{
                     if (effect[i] == "additional" )
                     {
                         int val = value[i];
-                        Debug.Log(val);
+                        
                         GlobalVariables.Instance.listOfResources[resourceId].addToBase(val);       
                     }
 

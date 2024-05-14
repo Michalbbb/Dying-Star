@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961214be683f23641bf6348a0160fc04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorType: 1
+  enterCursorType: 1
   downCursorType: 2
 --- !u!114 &570491145
 MonoBehaviour:

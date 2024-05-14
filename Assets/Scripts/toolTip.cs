@@ -9,6 +9,9 @@ public class toolTip : MonoBehaviour
     {
         tooltipManager._instance.setAndShowToolTip(message);
     }
+    public void forceRefersh(){
+        tooltipManager._instance.refresh(message);
+    }
     private void OnMouseExit()
     {
         tooltipManager._instance.hideToolTip();

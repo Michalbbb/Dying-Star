@@ -15,7 +15,7 @@ public class SetTechnology : MonoBehaviour
 
    
     // Start is called before the first frame update
-    public string file="Assets/TextFiles/Technology.txt";
+    public string file="TextFiles/Technology.txt";
  
     string fileText;
     void Start()
@@ -37,14 +37,18 @@ public class SetTechnology : MonoBehaviour
     }
 
     void generateTechnology(){
-        if (File.Exists(file))
+        if (File.Exists(Path.Combine(Application.streamingAssetsPath,file)))
         {
             // Read all text from the file
-            fileText = File.ReadAllText(file);
+            fileText = File.ReadAllText(Path.Combine(Application.streamingAssetsPath,file));
             string [] data=fileText.Split("\n");
             for(int i=0;i<data.Length;i++)
               GlobalVariables.Instance.technologies.Add(new Technology(data[i]));
             GlobalVariables.Instance.isTechnologyGenerated = true;
+        }
+        else{
+            Debug.Log("NOT FOUND");
+            Debug.Log(Path.Combine(Application.streamingAssetsPath,file));
         }
     }
 
@@ -52,23 +56,24 @@ public class SetTechnology : MonoBehaviour
     {
         if (!GlobalVariables.Instance.isTechnologyGenerated) return;
         float startingY = (canvas.GetComponent<RectTransform>().sizeDelta.y / 2) - (text.GetComponent<RectTransform>().sizeDelta.y * 3);
-        float startingX = -(canvas.GetComponent<RectTransform>().sizeDelta.x / 2);
-        const int BUTTON_X = 200;
-        const int BUTTON_Y = 100;
-        const int SPACE_BETWEEN = 150;
+        float startingX = -canvas.GetComponent<RectTransform>().sizeDelta.x/2 ;
+         int BUTTON_X = Screen.width/7;
+         int BUTTON_Y = Screen.height/5;
+         int SPACE_BETWEEN = Screen.height/15;
         startingX += BUTTON_X;
         float x = startingX;
         float y = startingY;
-
+    
         foreach (Technology tech in GlobalVariables.Instance.technologies)
         {
-            tech.generateButton(canvas,font,tip,tipText,x, y, BUTTON_X, BUTTON_Y);
-            x += BUTTON_X + SPACE_BETWEEN;
-            if (x >= (canvas.GetComponent<RectTransform>().sizeDelta.x / 2 - (BUTTON_X)))
+            if (x >= (canvas.GetComponent<RectTransform>().sizeDelta.x/2))
             {
                 x = startingX;
                 y -= (BUTTON_Y + SPACE_BETWEEN);
             }
+            tech.generateButton(canvas,font,tip,tipText,x, y, BUTTON_X, BUTTON_Y);
+            x += BUTTON_X + SPACE_BETWEEN;
+            
 
         }
         if (GlobalVariables.Instance.currentTechnology != -1)
