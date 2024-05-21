@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lab.unity
     guid: 0c441e09d52d9d54da0a0442e7e6f741
+  - enabled: 1
+    path: Assets/Scenes/Loss.unity
+    guid: 0973580b4d5b58c4a995fbc059d139a4
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: adeba4dc623d9314ea68af7039a227e4
   m_configObjects: {}

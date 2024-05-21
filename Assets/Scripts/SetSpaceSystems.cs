@@ -12,6 +12,8 @@ public class SetSpaceSystems : MonoBehaviour
     [SerializeField] Button[] alternativesButtons;
     [SerializeField] TextMeshProUGUI [] alternativesText;
     [SerializeField] TextMeshProUGUI label;
+    [SerializeField] RawImage refreshSystemsTime;
+    [SerializeField] TextMeshProUGUI refreshSystemsTimeTxt;
 
     [SerializeField] Button [] menuButtons;
     [SerializeField] RawImage menuPanel;
@@ -31,6 +33,9 @@ public class SetSpaceSystems : MonoBehaviour
     [SerializeField] RawImage pilotMenu;
 
     [SerializeField] RawImage equipmentMenu;
+    [SerializeField] RawImage logsOverview;
+     [SerializeField] GameObject hideRewards;
+    [SerializeField] GameObject hideTime;
     EquipmentManagement equipmentManagement;
 
     Pilot currentPilot;
@@ -41,32 +46,30 @@ public class SetSpaceSystems : MonoBehaviour
     private void OnEnable(){
         GenerateEquipment.doAction+=refreshEquipment;
         MissionManagement.doAction+=refreshAfterAcceptingMission;
+        MissionManagement.doAction+=refreshSystems;
         
     }
     private void OnDisable() {
         GenerateEquipment.doAction-=refreshEquipment;
         MissionManagement.doAction-=refreshAfterAcceptingMission;
+        MissionManagement.doAction-=refreshSystems;
+
         
     }
     private void Start() {
-        if(GlobalVariables.Instance.refreshAvailableSystems){
-            GlobalVariables.Instance.refreshAvailableSystems=false;
-            GlobalVariables.Instance.availableSpaceSystems.Clear();
-            for(int i=0;i<GlobalVariables.Instance.unlockedSystemAlternatives;i++){
-                GenerateSystem NewSystem=new GenerateSystem();
-                GlobalVariables.Instance.availableSpaceSystems.Add(NewSystem);
-
-            }
-        }
+         if(GlobalVariables.Instance.availableSpaceSystems.Count==0){
+            GlobalVariables.Instance.refreshSpaceSystemList();
+         }
         equipmentManagement=equipmentMenu.GetComponent<EquipmentManagement>();
         GlobalVariables.Instance.chosenPilot=false;
         GlobalVariables.Instance.pilotId=null;
+        hideRewards.SetActive(false);
+        hideTime.SetActive(false);
         showSystems();
         pilotMenu.gameObject.SetActive(false);
         equipmentMenu.gameObject.SetActive(false);
-        adjustMenu();
         setPilots();
-        //image.GetComponent<RawImage>().texture=space.getImage();
+       
     }
     
     private void Update(){
@@ -86,6 +89,7 @@ public class SetSpaceSystems : MonoBehaviour
         current="cs";
         hidePilots();
         hideHD();
+        hideLogs();
         menuButtons[0].GetComponent<RawImage>().color=Color.white;
       
         ShowPreview.rw=menuButtons[0].GetComponent<RawImage>();
@@ -118,21 +122,29 @@ public class SetSpaceSystems : MonoBehaviour
             alternativesText[iterator].text=sys.getInfo();
             iterator++;
         }
+        refreshSystemsTime.gameObject.SetActive(true);
+        refreshSystemsTimeTxt.SetText(GlobalVariables.Instance.refreshExplorationTime+"\nmonths");
+    }
+    public void refreshSystems(){
+        int iterator=0;
+        foreach(GenerateSystem sys in GlobalVariables.Instance.availableSpaceSystems){
+            alternativesText[iterator].text=sys.getInfo();
+            iterator++;
+        }
     }
     public void showPilots(){
         if(current=="ps") return;
         current="ps";
         hideSystems();
         hideHD();
+        hideLogs();
         
         panel.SetActive(true);
         pilotOverview.gameObject.SetActive(true);
-        menuButtons[1].GetComponent<RawImage>().color=Color.white;
+        menuButtons[2].GetComponent<RawImage>().color=Color.white;
   
-        ShowPreview.rw=menuButtons[1].GetComponent<RawImage>();
+        ShowPreview.rw=menuButtons[2].GetComponent<RawImage>();
         label.SetText("Pilots");
-
-
 
     }
     public void showHD(){
@@ -140,10 +152,27 @@ public class SetSpaceSystems : MonoBehaviour
         current="hd";
         hideSystems();
         hidePilots();
+        hideLogs();
         factory.gameObject.SetActive(true);
-        menuButtons[2].GetComponent<RawImage>().color=Color.white;
-        ShowPreview.rw=menuButtons[2].GetComponent<RawImage>();
+        menuButtons[3].GetComponent<RawImage>().color=Color.white;
+        ShowPreview.rw=menuButtons[3].GetComponent<RawImage>();
         label.SetText("Factory");
+
+    }
+    public void showLogs(){
+        if(current=="sl") return;
+        current="sl";
+        hideSystems();
+        hidePilots();
+        hideHD();
+        menuButtons[1].GetComponent<RawImage>().color=Color.white;
+        logsOverview.gameObject.SetActive(true);
+        ShowPreview.rw=menuButtons[1].GetComponent<RawImage>();
+        label.SetText("Event logs");
+    }
+    private void hideLogs(){
+        logsOverview.gameObject.SetActive(false);
+        menuButtons[1].GetComponent<RawImage>().color=Color.black;
 
     }
     private void hideSystems(){
@@ -152,35 +181,20 @@ public class SetSpaceSystems : MonoBehaviour
         {
             alt.enabled = false;
         }
+        refreshSystemsTime.gameObject.SetActive(false);
         foreach(RawImage alt in alternatives) alt.enabled=false;
         foreach(TextMeshProUGUI alt in alternativesText) alt.enabled=false;
     }
     private void hidePilots(){
-        menuButtons[1].GetComponent<RawImage>().color=Color.black;
+        menuButtons[2].GetComponent<RawImage>().color=Color.black;
         panel.SetActive(false);
         pilotOverview.gameObject.SetActive(false);
+        
 
     }
     private void hideHD(){
-        menuButtons[2].GetComponent<RawImage>().color=Color.black;
+        menuButtons[3].GetComponent<RawImage>().color=Color.black;
         factory.gameObject.SetActive(false);
-    }
-    private void adjustMenu(){
-        float menuWidth=Screen.width/10;
-        float menuHeight=Screen.height/1.4f;
-        float x=canvas.GetComponent<RectTransform>().sizeDelta.x/2-menuWidth/2;
-        float y=canvas.GetComponent<RectTransform>().sizeDelta.x/15;
-        menuPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(menuWidth,menuHeight);
-        menuPanel.GetComponent <RectTransform>().localPosition = new Vector3(x,y,0);
-        menuText.GetComponent<RectTransform>().sizeDelta=new Vector2(menuWidth*0.9f,menuHeight/9);
-        menuText.GetComponent<RectTransform>().localPosition = new Vector3(0,menuHeight/2-menuHeight/9,0);
-        float buttonY=menuHeight/2-menuHeight/9;
-        buttonY-= menuHeight/6;
-        foreach(Button alt in menuButtons){
-            alt.GetComponent<RectTransform>().sizeDelta = new Vector2(menuWidth*0.8f,menuWidth*0.8f);
-            alt.GetComponent<RectTransform>().localPosition=new Vector3(0,buttonY,0);
-            buttonY-=menuWidth*1f;
-        }
     }
     private void setPilots(){
 
@@ -192,11 +206,15 @@ public class SetSpaceSystems : MonoBehaviour
             scroll.GetComponent<RectTransform>().sizeDelta = new Vector2(BUTTON_X,scroll.GetComponent<RectTransform>().sizeDelta.y);
             grid.GetComponent<GridLayoutGroup>().cellSize=new Vector2(BUTTON_X,BUTTON_Y);
             grid.GetComponent<GridLayoutGroup>().spacing=new Vector2(0,SPACE_BETWEEN);
-
-            pilotSpace.GetComponent<RectTransform>().sizeDelta=new Vector2(BUTTON_X,(BUTTON_Y+SPACE_BETWEEN)*GlobalVariables.Instance.recruitedPilots.Count-SPACE_BETWEEN); 
+            List<Pilot> allPilots=new List<Pilot>();
+            allPilots.AddRange(GlobalVariables.Instance.recruitedPilots);
+            allPilots.AddRange(GlobalVariables.Instance.waitingToBeAssignedToExploration);
+            allPilots.Sort(new PilotComparer());
+            pilotSpace.GetComponent<RectTransform>().sizeDelta=new Vector2(BUTTON_X,(BUTTON_Y+SPACE_BETWEEN)*allPilots.Count-SPACE_BETWEEN); 
             int x=5;
             float y=0;  
-            foreach(Pilot p in GlobalVariables.Instance.recruitedPilots){
+            
+            foreach(Pilot p in allPilots){
                 p.generatePortrait(null,x,y,4,pilotSpace);
                 y-=BUTTON_Y+SPACE_BETWEEN;
             }

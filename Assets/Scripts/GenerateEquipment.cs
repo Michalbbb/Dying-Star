@@ -113,7 +113,7 @@ public class GenerateEquipment : MonoBehaviour
         string value1;
         string value2;
         buildButton.interactable=true;
-        if(cur1<GlobalVariables.Instance.listOfResources[2].getAmount()){
+        if(cur1<=GlobalVariables.Instance.listOfResources[2].getAmount()){
             value1=cur1.ToString();
         }
         else{
@@ -121,7 +121,7 @@ public class GenerateEquipment : MonoBehaviour
             buildButton.interactable=false;
         }
         int compareTo= hype ? GlobalVariables.Instance.listOfResources[1].getAmount() : GlobalVariables.Instance.listOfResources[3].getAmount();
-        if(cur2<compareTo)
+        if(cur2<=compareTo)
         value2=cur2.ToString();
         else {
                 value2="<color=red>"+cur2.ToString()+"</color>";
@@ -138,7 +138,7 @@ public class GenerateEquipment : MonoBehaviour
         description.gameObject.SetActive(false);
     }
     public void buildItem(){
-        if(type=="hype"){
+        if(type=="hyperdrive"){
             GlobalVariables.Instance.hyperdrives++;
             GlobalVariables.Instance.listOfResources[1].spend(GlobalVariables.Instance.hyperdriveQuamePrice);
             GlobalVariables.Instance.listOfResources[2].spend(GlobalVariables.Instance.hyperdriveMetalPrice);
@@ -150,9 +150,8 @@ public class GenerateEquipment : MonoBehaviour
             equipmentIcon.texture=newPiece.getIcon();
             equipmentDesc.SetText(newPiece.getDescription());
             int number=0;
-            if(quality=="ordinary")number=0;
-            else if(quality=="excellent")number=1;
-            else if(quality=="superior")number=2;
+            if(quality=="excellent")number=1;
+            if(quality=="superior")number=2;
             GlobalVariables.Instance.listOfResources[2].spend(equipmentConstValues.Instance.metalPrice[number]);
             GlobalVariables.Instance.listOfResources[3].spend(equipmentConstValues.Instance.titanPrice[number]);
             GlobalVariables.Instance.equipment.Add(newPiece);

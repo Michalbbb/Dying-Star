@@ -1,1 +1,1 @@
-1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;1;Attack
+1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;1;Attack;0;None;None

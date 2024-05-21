@@ -1,11 +1,11 @@
 Systems have 5 possible threat levels:
-Very Low - Expected total power of 600
-Low - Expected total power of 1200
-Medium - Expected total power of 2000
-High - Expected total power of 4000
-Lethal - Expected total power of 8000
+Minimal - Expected total power of 750
+Relatively Low - Expected total power of 1500
+Significant - Expected total power of 2500
+Lethal - Expected total power of 5000
+Extreme - Expected total power of 9000
 [Total power] is random value between 50% and 150% of expected total power ( fe. Medium threat level will have actual power between 1000 and 3000)
-[Power] is sum of stat of the entity * weigth ([Ordinary] pilots at level 1 and WITHOUT any equipment will have around 600 power)
+[Power] is sum of stat of the entity * weight + power from abilites ([Ordinary] pilots at level 1 and WITHOUT any equipment will have around 600 power + [power from abilites])
 Higher threat level means better reward for successful exploration and higher chance to find habitable planet ( which at this moment is objective for winning game )
 Chance to find habitable planet is equal to:
 Very low - -10% + 1% ppse ( up to 20% )
@@ -13,7 +13,7 @@ Low - 0% +1% ppse ( up to 40% )
 Medium - 0% + 2% ppse ( up to 60% )
 High - 3% + 3% ppse ( up to 100% )
 Lethal - 15% + 4% ppse ( up to 100% )
-[ppse] - per previous successful exploration ( stackable , fe. if player has done 5 successful exploration his chance to find habitable planet will be equal to 5% on [Low] threat level and equal to 35% on [Lethal] level
+[ppse] - per previous successful exploration ( stackable , fe. if player has done 5 successful exploration his chance to find habitable planet will be equal to 5% on [Low] threat level and equal to 35% on [Lethal] level)
 [ppse] is sum of explorations regardless of difficulty
 Player can send up to 4 pilots on one exploration. ( sending one pilot on mission means using 1 hyperdrive )
 If all ships are destroyed in battle, pilots will be deleted from pool of recruited (dead) and hyperdrives will be lost

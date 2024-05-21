@@ -45,12 +45,12 @@ Icons type: attack, defence, speed, health, critChance, critMultiplier
 
 Pilots can be categorized into 5 level of rarity: Ordinary, Advanced, Veteran, Renowned, Exalted
 
-Main difference between them are stat points pools:
-Ordinary - 600 
-Advanced - 630
-Veteran - 660
-Renowned - 700
-Exalted - 750
+Main difference between them are stat points pools and additional starting skill points:
+Ordinary - 600 + 0
+Advanced - 630 + 0
+Veteran - 660 + 0
+Renowned - 800 + 1
+Exalted - 1000 + 2
 
 Other than that pilots of Renowned and Exalted rarity have chance to gain special passive skills unavailable for other rarity pilots
 Exalted pilots can gain Renowned and Exalted passive skills, but Renowned cannot gain Exalted

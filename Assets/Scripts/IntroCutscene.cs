@@ -8,14 +8,12 @@ using UnityEngine.UIElements;
 
 public class IntroCutscene : MonoBehaviour
 {
-    [SerializeField] RawImage rawImage;
+    [SerializeField] RawImage targetImage;
     [SerializeField] PlayImageSoundAndText[] scenes;
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] AudioSource audioSource;
-
-    private float timeToNext=0f;
-    [SerializeField] public int numberOfScenes;
+    [SerializeField] AudioSource audioSource; 
     [SerializeField] public string loadSceneAfter;
+    private float timeToNext=0f;
     private int currentScene=0;
     private bool skip=false;
     public void Skip() {
@@ -28,15 +26,14 @@ public class IntroCutscene : MonoBehaviour
         timeToNext-=Time.deltaTime;
         if(timeToNext<0f){
             currentScene++;
-            if(currentScene>numberOfScenes || skip){
-                SceneManager.LoadScene(loadSceneAfter);
-                
+            if(currentScene>scenes.Length || skip){
+                SceneManager.LoadScene(loadSceneAfter);  
             }
             else{
             timeToNext=scenes[currentScene-1].clip.length;
             audioSource.PlayOneShot(scenes[currentScene-1].clip);
             text.SetText(scenes[currentScene-1].text);
-            rawImage.GetComponent<RawImage>().texture=scenes[currentScene-1].texture;
+            targetImage.GetComponent<RawImage>().texture=scenes[currentScene-1].texture;
             }
         }
     }

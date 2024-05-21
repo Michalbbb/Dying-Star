@@ -33,13 +33,14 @@ public class Pilot
     float baseSpeed;
     float baseHealth;
 
+
     bool equipmentBinded;
 
     int baseMovementPoints;
     float damageMultiplier = 1f;
 
     int movementPoints;
-    float healingMultiplier;
+    float healingMultiplier=1f;
     int critChance;
     int critMultiplier;
     int attack;
@@ -87,6 +88,9 @@ public class Pilot
             equipment[i]=null;
         }
         equipmentBinded=false;
+    }
+    public int getPilotType(){
+        return pilotType;
     }
     public void addExp(int expAmount){
         exp+=expAmount;
@@ -307,6 +311,13 @@ public class Pilot
             }
 
     }
+    public bool isAnyPointUnspent(){
+        if(skillTree.getSkillPoints()>0) return true;
+        return false;
+    }
+    public int getLevel(){
+        return level;
+    }
     public string getEquipmentDesc(int number){
             if(equipment[number]==null){
                 return "Slot is empty";
@@ -389,8 +400,15 @@ public class Pilot
     }
     public int getPower(){
         float critChanceNormalized= critChance > 100 ? 100 : critChance;
-        float power=attack*(1-critChanceNormalized/100f)+attack*(critChanceNormalized/100f)*(critChanceNormalized/100f)+defence+health/8+speed*10;
-        
+        float power=attack*(1-critChanceNormalized/100f)+attack*(critChanceNormalized/100f)*(critMultiplier/100f)+defence+health/8+speed*10;
+        power+=(movementPoints-baseMovementPoints)*30;
+        int powerMultiplier=0;
+
+        foreach(Ability ab in abilities){
+            power+=ab.getPower(shipClass);
+            if(ab.isHealingAbility())powerMultiplier++;
+        }
+        if(shipClass=="Support") power+=(healingMultiplier-1f)*500*powerMultiplier; // 5 power per 1% over 100
         return (int)power;
 
     }
@@ -550,6 +568,9 @@ public class Pilot
         if(rarityAsInt==4)lTxt.color = Color.black;
         else lTxt.color = Color.white;
         lTxt.text = "lvl.<b>"+level +"</b>";
+        if(recruited&&skillTree.getSkillPoints()>0){
+            lTxt.text+="(!)";
+        }
         lvlTxt.GetComponent<RectTransform>().localPosition = new Vector3(width / 2.5f, height / 2.5f, 0);
         // class
         GameObject clTxt = new GameObject("class");
@@ -829,7 +850,8 @@ public class Pilot
     {   
         
         if(!advanced) return $"Attack:{(int)baseAttack}\nDefence:{(int)baseDefence}\nSpeed:{(int)baseSpeed}\nHealth:{(int)baseHealth}\nCrit Chance:{baseCritChance}%\nCrit Multiplier:{baseCritMultiplier}%\nMovement points:{baseMovementPoints}";
-        return $"Attack:<b>{attack}</b>({(int)baseAttack}+{attack-(int)baseAttack})\nDefence:<b>{defence}</b>({(int)baseDefence}+{defence-(int)baseDefence})\nSpeed:<b>{speed}</b>({(int)baseSpeed}+{speed-(int)baseSpeed})\nHealth:<b>{health}</b>({(int)baseHealth}+{health-(int)baseHealth})\nCrit Chance:<b>{critChance}%</b>({baseCritChance}%+{critChance-baseCritChance}%)\nCrit Multiplier:<b>{critMultiplier}%</b>({baseCritMultiplier}%+{critMultiplier-baseCritMultiplier}%)\nMovement points:<b>{movementPoints}</b>({baseMovementPoints}+{movementPoints-baseMovementPoints})";
+        return $"Attack:<b>{attack}</b>({(int)baseAttack}+{attack-(int)baseAttack})\nDefence:<b>{defence}</b>({(int)baseDefence}+{defence-(int)baseDefence})\nSpeed:<b>{speed}</b>({(int)baseSpeed}+{speed-(int)baseSpeed})\nHealth:<b>{health}</b>({(int)baseHealth}+{health-(int)baseHealth})\nCrit Chance:<b>{critChance}%</b>({baseCritChance}%+{critChance-baseCritChance}%)\nCrit Multiplier:<b>{critMultiplier}%</b>({baseCritMultiplier}%+{critMultiplier-baseCritMultiplier}%)\nMovement points:<b>{movementPoints}</b>({baseMovementPoints}+{movementPoints-baseMovementPoints})"+
+        $"\n\n<b>Experience: {exp}/{requiredExp} </b>";
         
     }
     private void mouseEnter(RawImage buttonImage)

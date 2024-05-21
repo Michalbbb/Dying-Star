@@ -127,6 +127,13 @@ public class Technology{
 
 
     }
+    public void unlock(){
+        unlocked=1;
+    }
+    public bool isUnlocked(){
+        if(unlocked==1) return true;
+        return false;
+    }
     void OnMouseDown(){
         if (!completed&&unlocked==1){
             CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Down);
@@ -287,7 +294,7 @@ public class Technology{
                     GlobalVariables.Instance.unlockedSystemAlternatives += val;
                 if (effect[i] == "reduced")
                     GlobalVariables.Instance.unlockedSystemAlternatives -= val;
-                GlobalVariables.Instance.refreshAvailableSystems = true;
+                GlobalVariables.Instance.refreshSpaceSystemList();
             }
             else
             {
@@ -323,6 +330,10 @@ public class Technology{
     public string getResearchTime(){
         double timeRemaining = Math.Ceiling((baseResearchTime - researchPoints) / GlobalVariables.Instance.researchRate);
         return timeRemaining.ToString()+" months";
+    }
+    public int getResearchTimeAsInt(){
+        double timeRemaining = Math.Ceiling((baseResearchTime - researchPoints) / GlobalVariables.Instance.researchRate);
+        return (int)timeRemaining;
     }
     public void skipTime(int months){
         researchPoints+=months*GlobalVariables.Instance.researchRate;

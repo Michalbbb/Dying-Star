@@ -14,13 +14,9 @@ public class SetTechnology : MonoBehaviour
     [SerializeField] TextMeshProUGUI tipText;
 
    
-    // Start is called before the first frame update
-    public string file="TextFiles/Technology.txt";
- 
-    string fileText;
     void Start()
     {
-        if (!GlobalVariables.Instance.isTechnologyGenerated) generateTechnology();
+        
         setButtons();
          RectTransform[] children = canvas.GetComponentsInChildren<RectTransform>();
          int childrenCount=children.Length;
@@ -36,21 +32,7 @@ public class SetTechnology : MonoBehaviour
         }
     }
 
-    void generateTechnology(){
-        if (File.Exists(Path.Combine(Application.streamingAssetsPath,file)))
-        {
-            // Read all text from the file
-            fileText = File.ReadAllText(Path.Combine(Application.streamingAssetsPath,file));
-            string [] data=fileText.Split("\n");
-            for(int i=0;i<data.Length;i++)
-              GlobalVariables.Instance.technologies.Add(new Technology(data[i]));
-            GlobalVariables.Instance.isTechnologyGenerated = true;
-        }
-        else{
-            Debug.Log("NOT FOUND");
-            Debug.Log(Path.Combine(Application.streamingAssetsPath,file));
-        }
-    }
+    
 
     void setButtons()
     {

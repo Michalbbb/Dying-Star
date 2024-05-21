@@ -1,3 +1,3 @@
-1;Simple repair;Recovers health points of ally by 20% of own max health;1;1;healByOwnPercent;ally;0;0;20;1;1;5;Healin
-2;Advanced repair;Recovers health points of ally by 20% of own max health and removes all debuffs.;2;2;healByOwnPercent;ally;0;0;20;1;1;removeDebuffs;ally;0;0;0;1;1;5;Healin
-3;Global repairs;Recovers health points of all allies by 30% of their health points;6;1;heal;ally;0;0;30;99;99;99;Healin
+1;Simple repair;Recovers health points of ally by 20% of own max health;1;1;healByOwnPercent;ally;0;0;20;1;1;5;Healin;100;None;None;
+2;Advanced repair;Recovers health points of ally by 20% of own max health and removes all debuffs.;2;2;healByOwnPercent;ally;0;0;20;1;1;removeDebuffs;ally;0;0;0;1;1;5;Healin;120;None;None
+3;Global repairs;Recovers health points of all allies by 30% of their health points;6;1;heal;ally;0;0;30;99;99;99;Healin;300;None;None;

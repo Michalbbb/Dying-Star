@@ -8,6 +8,9 @@ using UnityEngine.UIElements;
 public class Ability 
 {
     int id;
+    int power;
+    string advantage;
+    string disadvantage;
     string name;
     string desc;
     int baseCooldown;
@@ -69,6 +72,12 @@ public class Ability
                 range = int.Parse(splitData[current]);
                 current++;
                 icon = splitData[current].TrimEnd();
+                current++;
+                power=int.Parse(splitData[current]);
+                current++;
+                advantage=splitData[current];
+                current++;
+                disadvantage=splitData[current];
             }
             catch { Debug.Log(data); }
         }
@@ -80,9 +89,19 @@ public class Ability
         if(range!=99)info += "\n" + "Attack Range: " + range;
         return info;
     }
+    public bool isHealingAbility(){
+        if(icon=="Healin")return true;
+        return false;
+    }
     public void use() // TODO 
     {
 
+    }
+    public int getPower(string type){
+        float returnValue=power;
+        if(type==disadvantage)returnValue*=0.7f;
+        if(type==advantage) returnValue*=1.4f;
+        return (int)returnValue;
     }
     public string getName() { return name; }
     public Texture2D getIcon()
@@ -123,7 +142,7 @@ public class GenerateAbility // Singleton responsible for generating abilities f
     int[] destroyerChances = { 2, 3, 1, 1, 1, 1, 1, 0, 0, 0};
     int[] cruiserChances = { 1, 3, 3, 3, 2, 2, 2, 2, 2, 2};
     int[] supportChances = { 0, 2, 2, 4, 4, 3, 3, 3, 3, 3};
-    string baseAbility = "1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;4;baseAttack";
+    string baseAbility = "1;Attack;Deals damage equal to 100% of attack power single enemy;0;1;damage;enemy;0;0;100;1;1;4;baseAttack;0;None;None";
     public List<Ability> generateTwo(int pilotClass)
     {
         List<Ability> twoAbilites = new List<Ability>();
