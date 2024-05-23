@@ -101,7 +101,8 @@ public class GeneratePassiveSkill
         }
 
         int startingSkillPoints=GlobalVariables.Instance.startingLevelOfPilots-1;
-        if(pilotRarity>=3)startingSkillPoints+=pilotRarity-2;
+        if(pilotRarity==4)startingSkillPoints+=1;
+        if(pilotRarity==5)startingSkillPoints+=3;
         return new SkillTree(region1, region2, region3,startingSkillPoints);
 
     }

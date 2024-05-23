@@ -21,7 +21,7 @@ public class Pilot
     int level;
     SkillTree skillTree;
     int id;
-    int exp;
+    float exp;
     int requiredExp;
 
     Equipment [] equipment;
@@ -92,8 +92,8 @@ public class Pilot
     public int getPilotType(){
         return pilotType;
     }
-    public void addExp(int expAmount){
-        exp+=expAmount;
+    public void addExp(float expAmount){
+        exp+=expAmount*GlobalVariables.Instance.pilotExpMultiplier;
         while(exp>=requiredExp&&level<GlobalVariables.Instance.maxLevel){
             exp-=requiredExp;
             level++;
@@ -156,7 +156,7 @@ public class Pilot
         metalPrice = Random.Range(baseAmount * 8, baseAmount * 12 + 1)*100;
         if (baseAmount >= 4)
         {
-            titanPrice = Random.Range(baseAmount * 5, baseAmount * 15 + 1) * 5;
+            titanPrice = Random.Range(baseAmount * 5, baseAmount * 15 + 1) * 5; // 100-300  /  500 - 1500  25*5 = 250 * 2 = 500
             if (baseAmount == 5) titanPrice *= 4;
         }
         

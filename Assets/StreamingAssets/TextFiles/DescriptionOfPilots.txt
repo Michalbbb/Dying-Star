@@ -50,7 +50,7 @@ Ordinary - 600 + 0
 Advanced - 630 + 0
 Veteran - 660 + 0
 Renowned - 800 + 1
-Exalted - 1000 + 2
+Exalted - 1000 + 3
 
 Other than that pilots of Renowned and Exalted rarity have chance to gain special passive skills unavailable for other rarity pilots
 Exalted pilots can gain Renowned and Exalted passive skills, but Renowned cannot gain Exalted

@@ -204,7 +204,7 @@ public class GenerateSystem
         gv[3].add(rewardTitan);
         gv[4].add(rewardEncre);
         GlobalVariables.Instance.hyperdrives+=assignedPilots.Count;
-        foreach(Pilot p in assignedPilots){p.addExp((int)(power*GlobalVariables.Instance.pilotExpMultiplier));GlobalVariables.Instance.recruitedPilots.Add(p);p.unbindEquipment();}
+        foreach(Pilot p in assignedPilots){p.addExp(power);GlobalVariables.Instance.recruitedPilots.Add(p);p.unbindEquipment();}
         assignedPilots.Clear();
         isSuccess=true;
         report+=$"\nWe gained from exploration {rewardNull} [Nulls], {rewardMetal} [Metals], {rewardTitan} [Titan v2], {rewardEncre} [Encre], {rewardQuame} [Quame] ";
