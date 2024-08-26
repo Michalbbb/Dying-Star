@@ -194,6 +194,7 @@ public class Technology{
         image.color=new Color(255/255f, 153/255f, 0/255f);
     }
     public void applyEffectsAndComplete(){
+        if(completed) return;
         completed=true;
 
         for(int i = 0; i < type.Count; i++) 
@@ -317,6 +318,10 @@ public class Technology{
                     }
 
                 }
+                else
+                {
+                    Debug.Log("Type is either not implemented or has typo.");
+                }
             }
 
 
@@ -338,6 +343,5 @@ public class Technology{
     public void skipTime(int months){
         researchPoints+=months*GlobalVariables.Instance.researchRate;
         if(researchPoints>=baseResearchTime)applyEffectsAndComplete();
-
     }
 }

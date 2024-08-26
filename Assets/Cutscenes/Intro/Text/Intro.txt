@@ -1,10 +1,23 @@
-541 years ago, "Lotus", planet that we live in was presumably colonized by our ancestors, well at least according to AI that was left with us. We were first generation of humans, who were taught mainly by machines due to unknown to us reasons.
-Machines were programmed to give all us knowledge they posses. We became immortal, got all knowledge that made our standard of live excellent We also got knowledge how to travel in our space system considerably fast. Yet there was not even one piece of information about traveling between space systems, no design of ships, no engines. Nothing. 
-We determined that our planet is orbiting around White Dwarf, which we call Orion. About 150 years ago our scientists noticed very small change of temperature on Lotus.
-It was confirmed that Orion's temperature has dropped by 50 degree Celsius. Even with all our knowledge we do not know much about cosmos. We did not know whether it was sign of Orion burning out.
-So we decided to start project which would allow us to built engines able to enter hyperspace in order to traverse other space systems. We still had hope, that Orion was not burning out.
-45 years ago temperature of Orion has been confirmed to drop by another 105 degrees. If our calculations are correct our planet won't be able to sustain life by year 1023. Even if we won't die by old age, we won't be able to survive in that temperature.
-Finally 2 years ago we managed to build prototype of hyperdrive, that should be able to travel hyperspace.
-As of current year 541, space habitat at the edge of our system that would allow us to traverse systems was built.
-Your mission as Admiral is to train pilots and find us a habitable planet. Keep in mind that we could only built 4 hyperdrives due to need of specific minerals. We will send you more information about that mineral. One of pilots priorities should be looking for such minerals in systems that they will explore.
+<color=red>Following transmission is official message from government. Part of information is confidential and should NOT be disclosed.</color>
+
+541 years ago we colonzied "Lotus". First generation never met our predecessors. We were taught by AI. Most of our technology is based on knowledge we gained from them. 
+Immortality, near utopian standard of living and ability to freely travel in our solar system - that's just a small part of given to us knowledge. 
+It was clear that civilization which sent us here was advanced beyond our comprehension.
+
+Our planet orbits around White Dwarf, which we call "Orion".
+About 150 years ago our scientists noticed small change of temperature on Lotus.
+It was confirmed that Orion temperature has dropped noticeably. It was clear that Orion is burning out.
+At that point our people started question whether we were brought there by our ancestors.
+
+Currently two main theories are circulating about our reason of being here. First one is called "Virtual reality theory" and assumes that we play some kind of virtual reality game.
+Second one is called "Alien experiment theory". It assumes that we are part of experiment conducted by advanced alien civilization.
+
+At the time we ignored those theories, as we had to start project which would allow us to built engines able to enter hyperspace and traverse to other solar systems.
+It took us 148 years to make first fully functional hyperdrive.
+
+As of current year 541, space habitat from which you can send pilots to explore solar systems was built. Your mission as Admiral is to train pilots and find us habitable planet. 
+Keep in mind that we could only built 4 hyperdrives due to need of mineral we call "Quame". One of pilots priorities during explorations should be looking for such mineral.
+
+If we won't find habitable planet before year 1023 temperature of Orion will be too low to sustain life on Lotus. It will mark end of our civilization.
+
 Good luck. End of transmission.

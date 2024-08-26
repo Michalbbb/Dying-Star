@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GenerateSystem 
 {
@@ -194,6 +195,12 @@ public class GenerateSystem
                 GlobalVariables.Instance.technologies[6].unlock();
                 report+=GlobalVariables.Instance.getDateAsString()+"Our pilots claims that during travel in hyperspace they found weird cube. Scientists named it <color=green>Ter</color> and they believe we can use it as extermally powerful source of energy if we give them enough time to study it.\n";
 
+            }
+        }
+        if(!GlobalVariables.Instance.foundAncestorMessage){
+            if(UnityEngine.Random.Range(0,100)<10){
+                GlobalVariables.Instance.foundAncestorMessage=true;
+                SceneManager.LoadScene(GlobalVariables.Instance.hiddenMessageScene);
             }
         }
         report+=GlobalVariables.Instance.getDateAsString()+"<color=green>[Success]</color> Exploration team has returned successfully to hangar.\nHabitable planet was not found in system.";

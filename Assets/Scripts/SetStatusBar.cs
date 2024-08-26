@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -139,11 +140,11 @@ public class SetStatusBar : MonoBehaviour
         dTxt.GetComponent<RectTransform>().sizeDelta=new Vector2(x*0.14f,rIY);
         dTxt.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
         dTxt.GetComponent<RectTransform>().localPosition=new Vector3(startingX+0.07f,0,0);
-        dTxt.SetText("Date\n"+"01."+GlobalVariables.Instance.getMonth()+"."+GlobalVariables.Instance.year.ToString());
         dTxt.alignment = TextAlignmentOptions.Center;
         dTxt.fontSize=25;
         dTxt.enableAutoSizing=true;
         date=dateHolder;
+        updateDate();
         startingX+=x*0.10f;
         float buttonSize = rIY*0.5f < x*0.06f ? rIY*0.5f : x*0.06f;
         skipMonth.GetComponent<RectTransform>().sizeDelta=new Vector2(buttonSize,buttonSize);
@@ -222,6 +223,6 @@ public class SetStatusBar : MonoBehaviour
     }
 
     private void updateDate(){
-        date.GetComponent<TextMeshProUGUI>().SetText("Date\n"+"01."+GlobalVariables.Instance.getMonth()+"."+GlobalVariables.Instance.year.ToString());
+        date.GetComponent<TextMeshProUGUI>().SetText("Date\n"+"01."+GlobalVariables.Instance.getMonth()+"."+GlobalVariables.Instance.year.ToString()+"\n"+GlobalVariables.Instance.getRemainingTime());
     }
 }

@@ -27,9 +27,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Lab.unity
     guid: 0c441e09d52d9d54da0a0442e7e6f741
   - enabled: 1
-    path: Assets/Scenes/Loss.unity
+    path: Assets/Scenes/LossByYear.unity
+    guid: aa68681cefae4c747841eb2ff4e61636
+  - enabled: 1
+    path: Assets/Scenes/LossByHyperdrives.unity
     guid: 0973580b4d5b58c4a995fbc059d139a4
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: adeba4dc623d9314ea68af7039a227e4
+  - enabled: 1
+    path: Assets/Scenes/Victory2.unity
+    guid: a1defe1001690e54893932b8741694b1
+  - enabled: 1
+    path: Assets/Scenes/HiddenMessage.unity
+    guid: 12d2a02ab24faa44597c5e0b94da3583
   m_configObjects: {}

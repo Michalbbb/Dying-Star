@@ -154,6 +154,7 @@ public class PassiveSkill
         currentLevel = 0;
         if (data == "Null" || data == null)
         {
+            
             name = "Error while loading passive skill";
             desc = "...";
         }
@@ -161,7 +162,6 @@ public class PassiveSkill
         {
             try
             {
-                //id;name;description;iconType;numberOfEffects;effectType;valueType;levels;value;
                 string[] splitData = data.Split(';');
                 id = int.Parse(splitData[0]);
                 if(rarity=="exalted") name = "<color=yellow>"+splitData[1]+"</color>";

@@ -1282,6 +1282,7 @@ MonoBehaviour:
   skipTillNextEvent: {fileID: 1333991679}
   skipTillNextEventTXT: {fileID: 1636771040}
   skipToNewSystemsTXT: {fileID: 1923545581}
+  file: TextFiles/Technology.txt
 --- !u!223 &723998175
 Canvas:
   m_ObjectHideFlags: 0
@@ -1602,6 +1603,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1691,6 +1693,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4da1fe8686eb943aef675ea10a9b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: MainMenu
+  key: 27
 --- !u!1 &1222589775
 GameObject:
   m_ObjectHideFlags: 0

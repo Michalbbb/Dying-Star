@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public sealed class GlobalVariables {
     private static GlobalVariables instance = null;
     private static readonly object padlock = new object();
+    public string hiddenMessageScene="HiddenMessage";
 
     public static GlobalVariables Instance
     {
@@ -34,7 +36,7 @@ public sealed class GlobalVariables {
     public bool firstRollDone;
 
     public int freeDrafts;
-
+    public bool foundAncestorMessage;
     public int basicDraftNullsPrice;
     public bool refreshPilotsInHangar;
     public int encreDraftNullsPrice;
@@ -60,6 +62,7 @@ public sealed class GlobalVariables {
         isTechnologyGenerated=false;
         month=2;
         year = 541;
+        foundAncestorMessage=false;
         researchRate = 1.0f;
         increasedBaseAttackOfShips = 1.0f;
         increasedBaseDefenceOfShips = 1.0f;
@@ -105,13 +108,17 @@ public sealed class GlobalVariables {
     }
     
     public void victoryScreen(){
-    SceneManager.LoadScene("Victory");
-
+        if(foundAncestorMessage)
+        SceneManager.LoadScene("Victory2");
+        else SceneManager.LoadScene("Victory");
     }
     public void checkIfGameIsOver(){
         if(hyperdrives<1&&!listOfResources[1].check(hyperdriveQuamePrice)&&currentlyExploring.Count==0){
-            SceneManager.LoadScene("Loss");
+            SceneManager.LoadScene("LossByHyperdrives");
         }
+    }
+    public void gameOverDueToDate(){
+            SceneManager.LoadScene("LossByYear");
     }
     public void addToWaitingList(Pilot p){
         if(hyperdrives>waitingToBeAssignedToExploration.Count&&waitingToBeAssignedToExploration.Count<4){
@@ -160,6 +167,7 @@ public sealed class GlobalVariables {
 
     public int month;
     public int year ;
+    public int endGameYear=1023;
     public float researchRate ;
     public float increasedBaseAttackOfShips ;
     public float increasedBaseDefenceOfShips ;
@@ -177,22 +185,28 @@ public sealed class GlobalVariables {
     public int hyperdrives;
 
 
-    public string getMonth(){
-        if(month<10){
+    public string getMonth()
+    {
+        if(month<10)
+        {
             return "0"+month.ToString();
         }
         return month.ToString();
     }
     private int refreshExplorationBaseTime=36;
-    public void skipTime(int months){
+    public void skipTime(int months)
+    {
         refreshExplorationTime-=months;
-        if(refreshExplorationTime<=0){
+        if(refreshExplorationTime<=0)
+        {
             refreshSpaceSystemList();
         }
         month+=months;
         if(month>12){year+=month/12;month=month%12;}
         if(month==0){year-=1;month+=12;}
-        foreach(Resource res in listOfResources){
+        if(year>=endGameYear) gameOverDueToDate();
+        foreach(Resource res in listOfResources)
+        {
             if(res!=null)res.skipTime(months);
         }
         if(currentTechnology != -1){
@@ -205,6 +219,7 @@ public sealed class GlobalVariables {
         foreach(Pilot p in recruitedPilots){
             p.addExp(months);
         }
+        
         updateGameStatus=true;
     }   
     public void refreshSpaceSystemList(){
@@ -216,6 +231,16 @@ public sealed class GlobalVariables {
 
             }
         
+    }
+    public string getRemainingTime(){
+        StringBuilder remainigTimeAsString=new StringBuilder();
+        int remainingYears=endGameYear-year;
+        if(remainingYears<20)remainigTimeAsString.Append("<color=red>");
+        else if(remainingYears<100)remainigTimeAsString.Append("<color=orange>");
+        else if(remainingYears<200)remainigTimeAsString.Append("<color=yellow>");
+        
+        remainigTimeAsString.Append("<size=50%>"+remainingYears+" years remaining</size>");
+        return remainigTimeAsString.ToString();
     }
     public bool updateGameStatus;
 }
