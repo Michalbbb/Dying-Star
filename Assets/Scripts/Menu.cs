@@ -7,10 +7,13 @@ public class Menu : MonoBehaviour
 {
     public void Play(){
         GlobalVariables.Instance.forceRestart();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene("Intro");
     }
     public void ReturnToMainScene(){
         SceneManager.LoadScene("MainScene");
+    }
+    public void Credits(){
+        SceneManager.LoadScene("Credits");
     }
     public void Quit(){
         Application.Quit();
